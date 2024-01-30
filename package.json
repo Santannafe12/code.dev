@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.8.10",
+    "@graphcms/rich-text-html-renderer": "^0.3.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "graphql": "^16.8.1",
