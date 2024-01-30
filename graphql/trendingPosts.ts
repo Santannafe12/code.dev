@@ -17,9 +17,12 @@ const GET_TRENDING_POSTS = gql`
         url
       }
       authorRelationship {
+        id
+        name
         username
       }
       categoriesRelationship {
+        id
         title
       }
     }

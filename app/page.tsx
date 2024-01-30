@@ -8,6 +8,6 @@ export default async function Home() {
   // const author = await getAuthor()
   // const authorPosts = await getAuthorPosts()
   return (
-    <></>
+<></>
   );
 }

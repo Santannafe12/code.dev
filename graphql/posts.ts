@@ -16,10 +16,12 @@ const GET_POSTS = gql`
         url
       }
       authorRelationship {
+        id
         name
         username
       }
       categoriesRelationship {
+        id
         title
       }
     }
