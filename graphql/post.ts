@@ -1,18 +1,21 @@
 "use server";
 
 import { getClient } from "@/lib/apollo-client";
-import { Post } from "@/types/data";
+import { PostsProps } from "@/types/data";
 import { gql } from "@apollo/client";
 
-const GET_TRENDING_POSTS = gql`
-  query TrendingPosts {
-    posts(where: { trending: true }, first: 10) {
+const GET_POST = gql`
+  query TrendingPosts($id: Int!) {
+    post(where: { id: $id }) {
       id
       title
       slug
       trending
       description
       createdAt
+      content {
+        raw
+      }
       image {
         url
       }
@@ -32,10 +35,11 @@ const GET_TRENDING_POSTS = gql`
   }
 `;
 
-export async function getTrendingPosts(): Promise<Post[]> {
+export async function getTrendingPosts(id: number): Promise<PostsProps> {
   const client = getClient();
   const { data } = await client.query({
-    query: GET_TRENDING_POSTS,
+    query: GET_POST,
+    variables: { id: id },
     context: {
       fetchOptions: {
         next: {
@@ -44,5 +48,5 @@ export async function getTrendingPosts(): Promise<Post[]> {
       },
     },
   });
-  return data.posts;
+  return data;
 }

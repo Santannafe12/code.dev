@@ -9,30 +9,30 @@ type Category = {
 type Author = {
   id?: number;
   createdAt?: string;
-  name?: string;
+  name: string;
   username?: string;
   slug?: string;
   email?: string;
   biography?: string;
-  avatar?: {
-    url?: string;
+  avatar: {
+    url: string;
   };
   postsRelationship?: Post[];
 };
 
-type Post = {
-  id?: number;
-  createdAt?: string;
-  title?: string;
-  slug?: string;
-  description?: string;
+export type Post = {
+  id: number;
+  createdAt: string;
+  title: string;
+  slug: string;
+  description: string;
   content?: RichTextProps;
   trending?: boolean;
-  image?: {
-    url?: string;
+  image: {
+    url: string;
   };
-  authorRelationship?: Author;
-  categoriesRelationship?: Category[];
+  authorRelationship: Author;
+  categoriesRelationship: Category[];
 };
 
 export type PostsConnection = {

@@ -1,6 +1,6 @@
 "use server";
 
-import { client } from "@/lib/apollo-client";
+import { getClient } from "@/lib/apollo-client";
 import { gql } from "@apollo/client";
 
 const GET_AUTHOR = gql`
@@ -48,6 +48,7 @@ const GET_AUTHOR_POSTS = gql`
 `;
 
 export async function getAuthor(username: string) {
+  const client = getClient();
   const { data } = await client.query({
     query: GET_AUTHOR,
     variables: { username },
@@ -60,9 +61,17 @@ export async function getAuthorPosts(
   first: number,
   after: string | null
 ) {
+  const client = getClient();
   const { data } = await client.query({
     query: GET_AUTHOR_POSTS,
     variables: { username, first, after },
+    context: {
+      fetchOptions: {
+        next: {
+          revalidate: 60,
+        },
+      },
+    },
   });
   return data;
 }

@@ -1,9 +1,4 @@
-import {
-  ApolloClient,
-  createHttpLink,
-  gql,
-  InMemoryCache,
-} from "@apollo/client";
+import { ApolloClient, createHttpLink, InMemoryCache } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import { env } from "process";
 
@@ -24,7 +19,24 @@ const authLink = setContext((_, { headers }) => {
   };
 });
 
-export const client = new ApolloClient({
-  link: authLink.concat(httpLink),
-  cache: new InMemoryCache(),
-});
+// THIS CODE BELOW SHOWS ERROR WHEN CACHING ON SERVER
+
+// export const client = new ApolloClient({
+//   link: authLink.concat(httpLink),
+//   cache: new InMemoryCache(),
+// });
+
+//FIXED PERMANENT CACHE ON SERVER
+
+let client: ApolloClient<any> | null = null;
+
+export const getClient = () => {
+  if (!client || typeof window === "undefined") {
+    client = new ApolloClient({
+      link: authLink.concat(httpLink),
+      cache: new InMemoryCache(),
+    });
+  }
+
+  return client;
+};
