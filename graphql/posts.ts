@@ -1,7 +1,7 @@
 "use server";
 
 import { getClient } from "@/lib/apollo-client";
-import { PostsConnection, PostsProps } from "@/types/data";
+import { Post, PostsConnection, PostsProps } from "@/types/data";
 import { gql } from "@apollo/client";
 
 const GET_POSTS = gql`
@@ -11,6 +11,7 @@ const GET_POSTS = gql`
       title
       slug
       description
+      trending
       createdAt
       image {
         url
@@ -19,6 +20,9 @@ const GET_POSTS = gql`
         id
         name
         username
+        avatar {
+          url
+        }
       }
       categoriesRelationship {
         id
@@ -41,13 +45,13 @@ const GET_POSTS_COUNT = gql`
 export async function getPosts(
   skip: number,
   first: number
-): Promise<PostsProps> {
+): Promise<Post[]> {
   const client = getClient();
   const { data } = await client.query({
     query: GET_POSTS,
     variables: { skip, first },
   });
-  return data;
+  return data.posts;
 }
 
 export async function getPostsCount(): Promise<PostsConnection> {

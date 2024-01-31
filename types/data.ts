@@ -33,6 +33,16 @@ export type Post = {
   };
   authorRelationship: Author;
   categoriesRelationship: Category[];
+  aggregate?: {
+    count?: number;
+  };
+  pageInfo?: {
+    endCursor?: string;
+    hasNextPage?: boolean;
+  };
+  edges?: {
+    node?: Post;
+  }[];
 };
 
 export type PostsConnection = {
