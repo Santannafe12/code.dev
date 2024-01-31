@@ -14,28 +14,29 @@ import {
     FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { Textarea } from "./ui/textarea"
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "./ui/select"
-import { toast } from "./ui/use-toast"
+import { Textarea } from "../ui/textarea"
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "../ui/select"
+import { toast } from "../ui/use-toast"
+import { TypographyLead } from "../typography"
 
 const formSchema = z.object({
-    name: z.string().min(2, {
-        message: "Username must be at least 2 characters.",
+    name: z.string().min(5, {
+        message: "Nome deve ter pelo menos 5 caracteres.",
     }),
     email: z.string().email({
-        message: "Please enter a valid email.",
+        message: "Por favor insira um email válido.",
     }),
     message: z.string().min(50, {
-        message: "Message must be at least 50 characters.",
-    }).max(300, {
-        message: "Message must be at most 300 characters.",
+        message: "Mensagem deve ter pelo menos 50 caracteres.",
+    }).max(400, {
+        message: "Mensagem ter no máximo 400 caracteres.",
     }),
     select: z.string({
-        required_error: "Please select an option to display.",
+        required_error: "Por favor selecione um assunto.",
     })
 })
 
-export function Contact() {
+export default function Contact() {
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -63,9 +64,14 @@ export function Contact() {
 
     return (
         <div>
-            <h2 className="scroll-m-20 pb-2 text-3xl font-semibold tracking-tight first:mt-0 mb-4">
-                Doubts or suggestions? Contact us!
-            </h2>
+            <div className="mb-6">
+                <h2 className="scroll-m-20 pb-2 text-3xl font-semibold tracking-tight first:mt-0">
+                    Dúvidas ou sugestões? Nos Contate!
+                </h2>
+                <TypographyLead>
+                    Entraremos em contato em breve.
+                </TypographyLead>
+            </div>
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
                     <FormField
@@ -99,7 +105,7 @@ export function Contact() {
                         name="select"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>Subject</FormLabel>
+                                <FormLabel>Assunto</FormLabel>
                                 <Select onValueChange={field.onChange} defaultValue={field.value}>
                                     <FormControl>
                                         <SelectTrigger>
@@ -108,11 +114,11 @@ export function Contact() {
                                     </FormControl>
                                     <SelectContent>
                                         <SelectGroup>
-                                            <SelectLabel>Options</SelectLabel>
+                                            <SelectLabel>Opções</SelectLabel>
                                             <SelectItem value="post">Post</SelectItem>
-                                            <SelectItem value="doubt">Doubt</SelectItem>
+                                            <SelectItem value="doubt">Dúvida</SelectItem>
                                             <SelectItem value="design">Design</SelectItem>
-                                            <SelectItem value="other">Other</SelectItem>
+                                            <SelectItem value="other">Outro</SelectItem>
                                         </SelectGroup>
                                     </SelectContent>
                                 </Select>
@@ -125,15 +131,15 @@ export function Contact() {
                         name="message"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>Message</FormLabel>
+                                <FormLabel>Mensagem</FormLabel>
                                 <FormControl>
-                                    <Textarea placeholder="Message" {...field} className="resize-none" />
+                                    <Textarea placeholder="Message" {...field} className="resize-none" rows={5} />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
                         )}
                     />
-                    <Button type="submit">Submit</Button>
+                    <Button type="submit" className="w-36">Enviar</Button>
                 </form>
             </Form>
         </div>

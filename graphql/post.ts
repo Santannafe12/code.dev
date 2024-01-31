@@ -5,8 +5,8 @@ import { PostsProps } from "@/types/data";
 import { gql } from "@apollo/client";
 
 const GET_POST = gql`
-  query TrendingPosts($id: Int!) {
-    post(where: { id: $id }) {
+  query Post($slug: String!) {
+    post(where: { slug: $slug }) {
       id
       title
       slug
@@ -35,11 +35,11 @@ const GET_POST = gql`
   }
 `;
 
-export async function getTrendingPosts(id: number): Promise<PostsProps> {
+export async function getPost(slug: string): Promise<PostsProps> {
   const client = getClient();
   const { data } = await client.query({
     query: GET_POST,
-    variables: { id: id },
+    variables: { slug: slug },
     context: {
       fetchOptions: {
         next: {

@@ -1,24 +1,29 @@
 "use client"
 
-import { AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
-import { Avatar } from "./ui/avatar";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "./ui/card";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "./ui/carousel";
-import Autoplay from "embla-carousel-autoplay"
-import { Badge } from "./ui/badge";
 import Image from "next/image";
 import Link from "next/link";
-import { Post } from "@/types/data";
-import { Heading } from "./typography";
 
-type CarouselHomeProps = {
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../ui/card";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "../ui/carousel";
+import { Badge } from "../ui/badge";
+
+import { TypographyH1 } from "../typography";
+
+import Autoplay from "embla-carousel-autoplay"
+
+import { Post } from "@/types/data";
+
+type TrendingPostsProps = {
     posts: Post[]
 }
 
-export default function CarouselHome({ posts }: CarouselHomeProps) {
+export default function TrendingPosts({ posts }: TrendingPostsProps) {
     return (
         <section>
-            <Heading title="Posts em destaque:" />
+            <TypographyH1>
+                Posts em destaque:
+            </TypographyH1>
             <Carousel
                 opts={{
                     loop: true,
@@ -28,7 +33,7 @@ export default function CarouselHome({ posts }: CarouselHomeProps) {
                         delay: 7000,
                     }),
                 ]}
-                className="w-full"
+                className="w-full mt-4"
             >
                 <CarouselContent>
                     {posts.map((post, index) => (

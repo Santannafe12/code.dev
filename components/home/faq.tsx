@@ -1,11 +1,15 @@
 import Link from "next/link";
-import { Heading } from "./typography";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "./ui/accordion";
+
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion";
+
+import { TypographyH1 } from "../typography";
 
 export default function FAQ() {
     return (
         <section>
-            <Heading title="FAQ" />
+            <TypographyH1>
+                FAQ
+            </TypographyH1>
             <Accordion type="single" collapsible className="w-full">
                 <AccordionItem value="item-1">
                     <AccordionTrigger>Propósito do site</AccordionTrigger>

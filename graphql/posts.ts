@@ -6,7 +6,7 @@ import { gql } from "@apollo/client";
 
 const GET_POSTS = gql`
   query Posts($skip: Int!, $first: Int!) {
-    posts(skip: $skip, first: $first) {
+    posts(skip: $skip, first: $first, orderBy: createdAt_DESC) {
       id
       title
       slug

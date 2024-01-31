@@ -1,41 +1,57 @@
 import Image from "next/image"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "./ui/card"
-import { Post } from "@/types/data"
-import { Button } from "./ui/button"
 import Link from "next/link"
+
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "./ui/card"
+import { Button as ButtonUI } from "./ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
 import { Badge } from "./ui/badge"
-import { Heading } from "./typography"
+
+import { TypographyH1, TypographyLead } from "./typography"
+
+import { Post } from "@/types/data"
+import { Pagination as PaginationUI, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "./ui/pagination"
+import Search from "./search"
 
 type PostsProps = {
     posts: Post[]
+    pagination?: boolean
+    search?: boolean
+    title: string
 }
 
-type HorinzontalCardProps = {
+type PostProps = {
     post: Post
 }
 
-export default function Posts({ posts }: PostsProps) {
+export default function Posts({ ...props }: PostsProps) {
     return (
-        <section>
-            <Heading title="Explore todas as publicações!" />
+        <section className="space-y-6">
+            <div className="flex justify-between items-center">
+                <div className="flex flex-col gap-2">
+                    <TypographyH1>
+                        {props.title}
+                    </TypographyH1>
+                </div>
+                {props.search ? (
+                    <Search />
+                ) : null
+                }
+            </div>
             <div className="flex flex-col gap-8">
-                {posts.map((post, index) => (
+                {props.posts.map((post, index) => (
                     <HorinzontalCard key={index} post={post} />
                 ))}
             </div>
-            <div className="flex w-full justify-center">
-                <Link href={'/posts'}>
-                    <Button variant="default" className="mt-6 self-center text-base" size="lg">
-                        Ver mais
-                    </Button>
-                </Link>
-            </div>
-        </section>
+            {props.pagination ? (
+                <Pagination />
+            ) :
+                <Button />
+            }
+        </section >
     )
 }
 
-export function HorinzontalCard({ post }: HorinzontalCardProps) {
+function HorinzontalCard({ post }: PostProps) {
     return (
         <section>
             <Card className="md:grow md:rounded-r-md md:rounded-l-none md:overflow-auto flex flex-col xl:flex-row w-full relative group overflow-hidden rounded-lg">
@@ -99,5 +115,46 @@ export function HorinzontalCard({ post }: HorinzontalCardProps) {
                 </section>
             </Card>
         </section>
+    )
+}
+
+function Pagination() {
+    return (
+        <PaginationUI>
+            <PaginationContent>
+                <PaginationItem>
+                    <PaginationPrevious href="#" />
+                </PaginationItem>
+                <PaginationItem>
+                    <PaginationLink href="#">1</PaginationLink>
+                </PaginationItem>
+                <PaginationItem>
+                    <PaginationLink href="#" isActive>
+                        2
+                    </PaginationLink>
+                </PaginationItem>
+                <PaginationItem>
+                    <PaginationLink href="#">3</PaginationLink>
+                </PaginationItem>
+                <PaginationItem>
+                    <PaginationEllipsis />
+                </PaginationItem>
+                <PaginationItem>
+                    <PaginationNext href="#" />
+                </PaginationItem>
+            </PaginationContent>
+        </PaginationUI>
+    )
+}
+
+function Button() {
+    return (
+        <div className="flex w-full justify-center">
+            <Link href={'/posts'}>
+                <ButtonUI variant="default" className="self-center text-base" size="lg">
+                    Ver mais
+                </ButtonUI>
+            </Link >
+        </div>
     )
 }

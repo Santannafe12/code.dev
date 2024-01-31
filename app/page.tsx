@@ -1,24 +1,22 @@
-import CarouselHome from "@/components/carousel";
-import { Contact } from "@/components/contact";
-import FAQ from "@/components/faq";
-import PostsComponent from "@/components/posts";
-import Posts from "@/components/posts";
+import TrendingPosts from "@/components/home/trending-posts";
+import Contact from "@/components/home/contact";
+import FAQ from "@/components/home/faq";
+
 import { getPosts, getPostsCount } from "@/graphql/posts";
 import { getTrendingPosts } from "@/graphql/trendingPosts";
+import Posts from "@/components/posts";
 
 export default async function Home() {
   const posts = await getPosts(0, 6)
-  const postsCount = await getPostsCount()
   const trendingPosts = await getTrendingPosts()
-  // console.log(posts)
   // const author = await getAuthor()
   // const authorPosts = await getAuthorPosts()
   return (
-    <div className="w-11/12 sm:w-9/12 m-auto space-y-32">
-      <CarouselHome posts={trendingPosts} />
-      <PostsComponent posts={posts} />
+    <section className="w-11/12 sm:w-9/12 m-auto space-y-16 sm:space-y-32 min-h-screen">
+      <TrendingPosts posts={trendingPosts} />
+      <Posts posts={posts} title="Explore as últimas publicações!" />
       <Contact />
       <FAQ />
-    </div>
+    </section>
   );
 }
