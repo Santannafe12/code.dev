@@ -6,7 +6,7 @@ import { Button as ButtonUI } from "./ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
 import { Badge } from "./ui/badge"
 
-import { TypographyH1, TypographyLead } from "./typography"
+import { TypographyH1 } from "./typography"
 
 import { Post } from "@/types/data"
 import { Pagination as PaginationUI, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "./ui/pagination"
@@ -27,11 +27,9 @@ export default function Posts({ ...props }: PostsProps) {
     return (
         <section className="space-y-6">
             <div className="flex justify-between items-center">
-                <div className="flex flex-col gap-2">
-                    <TypographyH1>
-                        {props.title}
-                    </TypographyH1>
-                </div>
+                <TypographyH1 className="border-none">
+                    {props.title}
+                </TypographyH1>
                 {props.search ? (
                     <Search />
                 ) : null
@@ -75,7 +73,7 @@ function HorinzontalCard({ post }: PostProps) {
                                 <CardTitle>{post.title}</CardTitle>
                             </Link>
                             {post.trending === true ? (
-                                <div className="hidden md:flex max-h-[30px] min-w-fit text-center bg-red-500 text-white text-sm px-2 py-1 rounded-bl-md font-semibold cursor-default">
+                                <div className="hidden md:flex max-h-[30px] min-w-fit text-center bg-red-500 text-white text-sm px-2 py-1 rounded-bl-md rounded-tr-md font-semibold cursor-default">
                                     Em alta
                                 </div>
                             ) : null}
@@ -95,7 +93,7 @@ function HorinzontalCard({ post }: PostProps) {
                                 <AvatarImage src={post.authorRelationship.avatar.url} alt="@shadcn" />
                                 <AvatarFallback>{post.authorRelationship.name}</AvatarFallback>
                             </Avatar>
-                            <Link href={post.authorRelationship.username || '/'}>
+                            <Link href={`/user/${post.authorRelationship.username}`}>
                                 <small className="text-sm font-medium leading-none">
                                     {post.authorRelationship.name}
                                 </small>

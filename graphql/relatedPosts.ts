@@ -1,21 +1,19 @@
-"use server";
-
 import { getClient } from "@/lib/apollo-client";
 import { Post } from "@/types/data";
 import { gql } from "@apollo/client";
 
-const GET_POST = gql`
-  query Post($slug: String!) {
-    post(where: { slug: $slug }) {
+const GET_RELATED_POSTS = gql`
+  query RelatedPosts($categoryTitles: [String!]!, $currentPostSlug: String!) {
+    posts(
+      where: { categoriesRelationship_some: { title_in: $categoryTitles }, slug_not: $currentPostSlug }
+      first: 7
+    ) {
       id
       title
       slug
       trending
       description
       createdAt
-      content {
-        raw
-      }
       image {
         url
       }
@@ -23,8 +21,6 @@ const GET_POST = gql`
         id
         name
         username
-        biography
-        shortBio
         avatar {
           url
         }
@@ -37,11 +33,17 @@ const GET_POST = gql`
   }
 `;
 
-export async function getPost(slug: string): Promise<Post> {
+export async function getRelatedPosts(
+  categoryTitles: string[],
+  currentPostSlug: string
+): Promise<Post[]> {
   const client = getClient();
   const { data } = await client.query({
-    query: GET_POST,
-    variables: { slug: slug },
+    query: GET_RELATED_POSTS,
+    variables: {
+      categoryTitles,
+      currentPostSlug,
+    },
     context: {
       fetchOptions: {
         next: {
@@ -50,6 +52,5 @@ export async function getPost(slug: string): Promise<Post> {
       },
     },
   });
-
-  return data.post;
+  return data.posts;
 }

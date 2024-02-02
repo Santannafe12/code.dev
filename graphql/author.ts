@@ -1,6 +1,7 @@
 "use server";
 
 import { getClient } from "@/lib/apollo-client";
+import { Author, Post, PostsConnection } from "@/types/data";
 import { gql } from "@apollo/client";
 
 const GET_AUTHOR = gql`
@@ -41,26 +42,30 @@ const GET_AUTHOR_POSTS = gql`
           slug
           description
           trending
+          categoriesRelationship {
+            id
+            title
+          }
         }
       }
     }
   }
 `;
 
-export async function getAuthor(username: string) {
+export async function getAuthor(username: string): Promise<Author> {
   const client = getClient();
   const { data } = await client.query({
     query: GET_AUTHOR,
     variables: { username },
   });
-  return data;
+  return data.author;
 }
 
 export async function getAuthorPosts(
   username: string,
   first: number,
   after: string | null
-) {
+): Promise<PostsConnection> {
   const client = getClient();
   const { data } = await client.query({
     query: GET_AUTHOR_POSTS,
@@ -73,5 +78,5 @@ export async function getAuthorPosts(
       },
     },
   });
-  return data;
+  return data.postsConnection;
 }

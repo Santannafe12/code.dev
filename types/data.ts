@@ -1,19 +1,28 @@
-import { RichTextProps } from "@graphcms/rich-text-html-renderer";
+import { ElementNode } from "@graphcms/rich-text-types";
+
+type Content = {
+  content: {
+    raw: {
+      children: ElementNode[];
+    };
+  };
+};
 
 type Category = {
   id?: number;
-  title?: string;
+  title: string;
   postsRelationship?: Post[];
 };
 
-type Author = {
+export type Author = {
   id?: number;
-  createdAt?: string;
+  createdAt: string;
   name: string;
   username?: string;
   slug?: string;
   email?: string;
   biography?: string;
+  shortBio: string;
   avatar: {
     url: string;
   };
@@ -26,7 +35,6 @@ export type Post = {
   title: string;
   slug: string;
   description: string;
-  content?: RichTextProps;
   trending?: boolean;
   image: {
     url: string;
@@ -43,18 +51,18 @@ export type Post = {
   edges?: {
     node?: Post;
   }[];
-};
+} & Content;
 
 export type PostsConnection = {
-  aggregate?: {
-    count?: number;
+  aggregate: {
+    count: number;
   };
-  pageInfo?: {
-    endCursor?: string;
-    hasNextPage?: boolean;
+  pageInfo: {
+    endCursor: string;
+    hasNextPage: boolean;
   };
-  edges?: {
-    node?: Post;
+  edges: {
+    node: Post;
   }[];
 };
 

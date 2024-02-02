@@ -3,26 +3,24 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../ui/card";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "../ui/carousel";
-import { Badge } from "../ui/badge";
-
-import { TypographyH1 } from "../typography";
-
 import Autoplay from "embla-carousel-autoplay"
 
 import { Post } from "@/types/data";
+import { TypographyH1 } from "./typography";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "./ui/carousel";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "./ui/card";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { Badge } from "./ui/badge";
 
 type TrendingPostsProps = {
     posts: Post[]
 }
 
-export default function TrendingPosts({ posts }: TrendingPostsProps) {
+export default function RelatedPosts({ posts }: TrendingPostsProps) {
     return (
         <section>
             <TypographyH1>
-                Posts em destaque:
+                Posts relacionados:
             </TypographyH1>
             <Carousel
                 opts={{
@@ -37,7 +35,7 @@ export default function TrendingPosts({ posts }: TrendingPostsProps) {
             >
                 <CarouselContent>
                     {posts.map((post, index) => (
-                        <CarouselItem key={index} className="lg:basis-1/2 2xl:basis-1/3">
+                        <CarouselItem key={index} className="lg:basis-1/2 2xl:basis-1/4">
                             <div className="p-1">
                                 <Card className="relative group overflow-hidden rounded-lg">
                                     <Image
@@ -48,9 +46,11 @@ export default function TrendingPosts({ posts }: TrendingPostsProps) {
                                         className="rounded-t-md border w-full max-h-[600px] object-cover"
                                         priority
                                     />
-                                    <div className="absolute top-0 right-0 bg-red-500 text-white text-sm px-2 py-1 rounded-bl-md font-semibold cursor-default">
-                                        Em alta
-                                    </div>
+                                    {post.trending ? (
+                                        <div className="absolute top-0 right-0 bg-red-500 text-white text-sm px-2 py-1 rounded-bl-md font-semibold cursor-default">
+                                            Em alta
+                                        </div>
+                                    ) : null}
                                     <CardHeader className="space-y-3">
                                         <Link href={`/post/${post.slug}`}>
                                             <CardTitle className="line-clamp-2 min-h-12">

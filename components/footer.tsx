@@ -10,7 +10,7 @@ export default function Footer() {
                     <Code className="h-6 w-6" />
                     <span className="text-lg font-semibold">code.dev</span>
                 </Link>
-                <span className="text-base text-center text-muted-foreground">Construído com graphql e shadcn. Código fonte no <Link href={'https://github.com/Santannafe12'} target="_blank" className="text-blue-400 hover:underline">Github.</Link></span>
+                <span className="text-base text-center text-muted-foreground">Construído por Felipe Sant&apos;Anna. Código fonte no <Link href={'https://github.com/Santannafe12'} target="_blank" className="text-blue-400 hover:underline">Github.</Link></span>
             </div>
         </div>
     )
