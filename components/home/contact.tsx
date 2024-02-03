@@ -18,8 +18,10 @@ import { Textarea } from "../ui/textarea"
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "../ui/select"
 import { toast } from "../ui/use-toast"
 import { TypographyLead } from "../typography"
+import { send } from "@/lib/send"
+import { useEffect, useRef } from "react"
 
-const formSchema = z.object({
+export const formSchema = z.object({
     name: z.string().min(5, {
         message: "Nome deve ter pelo menos 5 caracteres.",
     }),
@@ -47,19 +49,38 @@ export default function Contact() {
         },
     })
 
-    // 2. Define a submit handler.
+    const audioPlayer = useRef<HTMLAudioElement>(null);
+
+    function playAudio() {
+        if (audioPlayer.current) {
+            audioPlayer.current.volume = 0.2;
+            audioPlayer.current.play();
+        }
+    }
+
     function onSubmit(values: z.infer<typeof formSchema>) {
-        // Do something with the form values.
-        // ✅ This will be type-safe and validated.
-        toast({
-            title: "You submitted the following values:",
-            description: (
-                <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4 h-screen">
-                    <code className="text-white">{JSON.stringify(values, null, 2)}</code>
-                </pre>
-            ),
-        })
-        console.log(values)
+        send(values)
+            .then(() => {
+                toast({
+                    title: "Email enviado!",
+                    description: (
+                        <pre className="flex flex-col gap-2 mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+                            <code className="text-white">Mensagem enviada com sucesso!</code>
+                            <code className="text-white">Entraremos em contato em breve.</code>
+                        </pre>
+                    ),
+                });
+
+                playAudio();
+
+                form.reset();
+            })
+            .catch(() => {
+                toast({
+                    title: "Erro ao enviar mensagem",
+                    description: "Por favor tente novamente.",
+                });
+            });
     }
 
     return (
@@ -73,7 +94,7 @@ export default function Contact() {
                 </TypographyLead>
             </div>
             <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+                <form className="space-y-4" onSubmit={form.handleSubmit(onSubmit)}>
                     <FormField
                         control={form.control}
                         name="name"
@@ -142,6 +163,7 @@ export default function Contact() {
                     <Button type="submit" className="w-36">Enviar</Button>
                 </form>
             </Form>
+            <audio ref={audioPlayer} src="/audio/success.mp3" />
         </div>
     )
 }

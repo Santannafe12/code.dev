@@ -9,6 +9,10 @@ import { Card, CardFooter, CardHeader, CardTitle } from "./ui/card";
 
 import { Badge } from "./ui/badge";
 import Link from "next/link";
+import { ApolloClient, ApolloLink, ApolloProvider, HttpLink, InMemoryCache, concat, createHttpLink, gql, useQuery } from "@apollo/client";
+import { env } from "process";
+import { setContext } from "@apollo/client/link/context";
+import { client } from "@/lib/test";
 
 type Tabs = 'start' | 'posts';
 
@@ -33,7 +37,6 @@ export const UserProvider: React.FC<UserContextProps> = ({ user, userPosts, chil
 };
 
 export default function User({ user, userPosts }: { user: Author, userPosts: PostsConnection }) {
-    console.log(userPosts.edges[0])
     return (
         <UserProvider user={user} userPosts={userPosts}>
             <div>
@@ -108,21 +111,26 @@ function Posts() {
     return (
         <div>
             <TypographyH2 className="mb-2">
-                Este usuário tem X posts associados:
+                Este usuário tem {userPosts.postsConnection.edges.length} posts associados:
             </TypographyH2>
             <section className="flex flex-wrap gap-8">
-                {userPosts.edges.map((post, index) => (
-                    <Card key={index} className="w-[350px] h-auto">
-                        <CardHeader>
-                            <Link href={`/post/${post.node.slug}`}><CardTitle className="text-lg line-clamp-2 hover:underline">{post.node.title}</CardTitle></Link>
-                        </CardHeader>
-                        <CardFooter className="flex flex-wrap max-h-[20px] gap-2 overflow-hidden mb-4">
-                            {post.node.categoriesRelationship.map((category, index) => (
-                                <Badge key={index} variant="secondary">{category.title}</Badge>
-                            ))}
-                        </CardFooter>
-                    </Card>
-                ))}
+                {userPosts.postsConnection.edges.map((postEdge, index) => {
+                    const post = postEdge.node;
+                    return (
+                        <Card key={index} className="w-[350px] h-auto">
+                            <CardHeader>
+                                <Link href={`/post/${post.slug}`}>
+                                    <CardTitle className="text-lg line-clamp-2 hover:underline">{post.title}</CardTitle>
+                                </Link>
+                            </CardHeader>
+                            <CardFooter className="flex flex-wrap max-h-[20px] gap-2 overflow-hidden mb-4">
+                                {post.categoriesRelationship.map((category, index) => (
+                                    <Badge key={index} variant="secondary">{category.title}</Badge>
+                                ))}
+                            </CardFooter>
+                        </Card>
+                    );
+                })}
             </section>
         </div>
     );

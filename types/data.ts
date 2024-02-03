@@ -54,16 +54,18 @@ export type Post = {
 } & Content;
 
 export type PostsConnection = {
-  aggregate: {
-    count: number;
+  postsConnection: {
+    aggregate: {
+      count: number;
+    };
+    pageInfo: {
+      endCursor: string;
+      hasNextPage: boolean;
+    };
+    edges: {
+      node: Post;
+    }[];
   };
-  pageInfo: {
-    endCursor: string;
-    hasNextPage: boolean;
-  };
-  edges: {
-    node: Post;
-  }[];
 };
 
 export type PostProps = {

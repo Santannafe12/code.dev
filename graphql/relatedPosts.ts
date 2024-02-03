@@ -5,7 +5,10 @@ import { gql } from "@apollo/client";
 const GET_RELATED_POSTS = gql`
   query RelatedPosts($categoryTitles: [String!]!, $currentPostSlug: String!) {
     posts(
-      where: { categoriesRelationship_some: { title_in: $categoryTitles }, slug_not: $currentPostSlug }
+      where: {
+        categoriesRelationship_some: { title_in: $categoryTitles }
+        slug_not: $currentPostSlug
+      }
       first: 7
     ) {
       id
