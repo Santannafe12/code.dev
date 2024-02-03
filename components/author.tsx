@@ -9,10 +9,6 @@ import { Card, CardFooter, CardHeader, CardTitle } from "./ui/card";
 
 import { Badge } from "./ui/badge";
 import Link from "next/link";
-import { ApolloClient, ApolloLink, ApolloProvider, HttpLink, InMemoryCache, concat, createHttpLink, gql, useQuery } from "@apollo/client";
-import { env } from "process";
-import { setContext } from "@apollo/client/link/context";
-import { client } from "@/lib/test";
 
 type Tabs = 'start' | 'posts';
 
