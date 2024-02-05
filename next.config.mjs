@@ -7,6 +7,11 @@ const nextConfig = {
                 hostname: 'media.graphassets.com',
                 port: '',
             },
+            {
+                protocol: 'https',
+                hostname: 'res.cloudinary.com',
+                port: '',
+            }
         ],
     },
 };
