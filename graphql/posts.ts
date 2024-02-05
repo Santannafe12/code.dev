@@ -1,14 +1,16 @@
 "use server";
 
 import { getClient } from "@/lib/apollo-client";
-import { Post, PostsConnection } from "@/types/data";
+import { Post } from "@/types/data";
 import { gql } from "@apollo/client";
 
+import { postsPerPage } from "@/lib/utils";
+
 const GET_POSTS = gql`
-  query Posts($skip: Int!, $first: Int!, $searchTerm: String) {
+  query Posts($skip: Int!, $postsPerPage: Int!, $searchTerm: String) {
     posts(
       skip: $skip
-      first: $first
+      first: $postsPerPage
       orderBy: createdAt_DESC
       where: { title_contains: $searchTerm }
     ) {
@@ -48,14 +50,13 @@ const GET_POSTS_COUNT = gql`
 `;
 
 export async function getPosts(
-  skip: number,
-  first: number,
-  searchTerm?: string
+  skip: number = 0,
+  searchTerm: string = ""
 ): Promise<Post[]> {
   const client = getClient();
   const { data } = await client.query({
     query: GET_POSTS,
-    variables: { skip, first, searchTerm },
+    variables: { skip, postsPerPage, searchTerm },
     context: {
       fetchOptions: {
         next: {
@@ -67,7 +68,7 @@ export async function getPosts(
   return data.posts;
 }
 
-export async function getPostsCount(searchTerm: string): Promise<number> {
+export async function getPostsCount(searchTerm: string = ""): Promise<number> {
   const client = getClient();
   const { data } = await client.query({
     query: GET_POSTS_COUNT,

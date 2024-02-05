@@ -9,7 +9,8 @@ import { Button } from "./ui/button";
 
 import { ModeToggle } from "./mode-toggle";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 const links = [
     {
@@ -24,10 +25,15 @@ const links = [
 
 export default function Header() {
     const [isNavOpen, setIsNavOpen] = useState(false)
+    const pathname = usePathname()
 
     const handleNavOpen = () => {
         setIsNavOpen(!isNavOpen)
     }
+
+    useEffect(() => {
+        setIsNavOpen(false)
+    }, [pathname])
 
     return (
         <header className="sticky top-0 left-0 right-0 z-50 border-b backdrop-blur-lg mb-8">

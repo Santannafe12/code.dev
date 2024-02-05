@@ -8,7 +8,7 @@ import { Button as ButtonUI } from "./ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
 import { Badge } from "./ui/badge"
 
-import { TypographyH1 } from "./typography"
+import { TypographyH1, TypographyH4, TypographyMuted } from "./typography"
 
 import { Post } from "@/types/data"
 import { Pagination as PaginationUI, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "./ui/pagination"
@@ -28,10 +28,10 @@ type PostProps = {
     post: Post
 }
 
-export default function Posts({ ...props }: PostsProps) {
+export function Posts({ ...props }: PostsProps) {
     return (
         <section className="space-y-6">
-            <div className="flex justify-between items-center">
+            <div className="flex flex-col md:flex-row justify-between md:items-center">
                 <TypographyH1 className="border-none">
                     {props.title}
                 </TypographyH1>
@@ -51,6 +51,22 @@ export default function Posts({ ...props }: PostsProps) {
                 <Button />
             }
         </section >
+    )
+}
+
+export function NotFoundPosts() {
+    return (
+        <div className="space-y-4 flex flex-col md:flex-row justify-between md:items-center">
+            <section>
+                <TypographyH1 className="border-none">
+                    Nenhuma publicação encontrada
+                </TypographyH1>
+                <TypographyMuted className="border-none">
+                    Tente novamente com outros termos de busca.
+                </TypographyMuted>
+            </section>
+            <Search />
+        </div>
     )
 }
 
@@ -153,9 +169,6 @@ function Pagination({ totalPages }: { totalPages: number }) {
                         </PaginationLink>
                     </PaginationItem>
                 ))}
-                <PaginationItem>
-                    <PaginationEllipsis />
-                </PaginationItem>
                 <PaginationItem>
                     <PaginationNext
                         href={createPageURL(currentPage + 1)}

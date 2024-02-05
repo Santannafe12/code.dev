@@ -34,6 +34,9 @@ const GET_AUTHOR_POSTS = gql`
         endCursor
         hasNextPage
       }
+      aggregate {
+        count
+      }
       edges {
         node {
           id

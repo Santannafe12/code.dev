@@ -19,7 +19,7 @@ import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrig
 import { toast } from "../ui/use-toast"
 import { TypographyLead } from "../typography"
 import { send } from "@/lib/send"
-import { useEffect, useRef } from "react"
+import { useRef } from "react"
 
 export const formSchema = z.object({
     name: z.string().min(5, {

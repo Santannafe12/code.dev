@@ -4,10 +4,10 @@ import FAQ from "@/components/home/faq";
 
 import { getPosts } from "@/graphql/posts";
 import { getTrendingPosts } from "@/graphql/trendingPosts";
-import Posts from "@/components/posts";
+import { Posts } from "@/components/posts";
 
 export default async function Home() {
-  const posts = await getPosts(0, 6, "")
+  const posts = await getPosts()
   const trendingPosts = await getTrendingPosts()
 
   return (

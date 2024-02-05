@@ -1,19 +1,16 @@
-import Posts from "@/components/posts";
+import { NotFoundPosts, Posts } from "@/components/posts";
 import { getPosts, getPostsCount } from "@/graphql/posts";
+
+import { postsPerPage } from "@/lib/utils";
 
 export default async function Page({ searchParams }: { searchParams: { page: string, query: string } }) {
     const page = Number(searchParams?.page) || 1
-    const postsPerPage = 6
-    const query = searchParams?.query || ''
-
-    // Calculate the offset based on the page number
     const offset = (page - 1) * postsPerPage
 
-    // Fetch posts for the current page
-    const posts = await getPosts(offset, postsPerPage, query)
-
-    // Fetch total count of posts
-    const postsCount = await getPostsCount(query)
+    const [posts, postsCount] = await Promise.all([
+        getPosts(offset, searchParams.query),
+        getPostsCount(searchParams.query)
+    ])
 
     const totalPages = Math.ceil(postsCount / postsPerPage);
 
@@ -22,7 +19,7 @@ export default async function Page({ searchParams }: { searchParams: { page: str
             {posts && posts.length > 0 ? (
                 <Posts title="Publicações" posts={posts} pagination={true} search={true} postsCount={postsCount} totalPages={totalPages} />
             ) : (
-                <p>Nenhuma publicação encontrada</p>
+                <NotFoundPosts />
             )}
         </section>
     )

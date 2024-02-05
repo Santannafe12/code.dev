@@ -1,5 +1,5 @@
 import { Post } from "@/types/data";
-import { TypographyH1, TypographyH2, TypographyMuted, TypographyP } from "./typography";
+import { TypographyH1, TypographyH2, TypographyH3, TypographyH4, TypographyMuted, TypographyP } from "./typography";
 import Image from "next/image";
 import { RichText } from "./rich-text";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
@@ -27,18 +27,17 @@ export default function Post({ post }: { post: Post }) {
                     alt={`Imagem sobre: ${post.title}`}
                     src={post.image.url}
                     className="aspect-video rounded-xl max-h-[450px] object-cover" />
-                <TypographyMuted className="text-center">{`Imagem sobre ${post.title}`}</TypographyMuted>
+                <TypographyMuted className="text-center text-sm mt-2">{`Imagem sobre ${post.title}`}</TypographyMuted>
             </section>
             <section className="space-y-6">
                 <RichText
                     content={post.content.raw}
                     renderers={{
                         h1: TypographyH1,
-                        h2: TypographyH1,
-                        h3: TypographyH1,
-                        h4: TypographyH1,
-                        h5: TypographyH1,
-                        h6: TypographyH1,
+                        h2: TypographyH2,
+                        h3: TypographyH3,
+                        h4: TypographyH4,
+                        p: TypographyP,
                     }}
                 />
             </section>

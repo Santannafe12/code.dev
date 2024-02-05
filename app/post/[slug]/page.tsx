@@ -14,7 +14,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
     return (
         <div className="w-full space-y-16 sm:space-y-32 min-h-screen">
-            <section className="mx-auto w-10/12 sm:w-9/12 lg:w-8/12 xl:w-7/12 2xl:w-6/12">
+            <section className="mx-auto w-11/12 sm:w-10/12 md:w-9/12 lg:w-8/12 xl:w-7/12 2xl:w-6/12">
                 <Post post={post} />
             </section>
             <section className="mx-auto w-11/12 lg:w-10/12 xl:w-9/12 2xl:w-8/12">

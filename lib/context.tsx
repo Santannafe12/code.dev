@@ -1,13 +1,10 @@
 'use client'
 
-import { Author, PostsConnection } from "@/types/data";
-import { createContext, useContext, useState } from "react";
-
-type Tabs = 'start' | 'posts';
-
+import { Author } from "@/types/data";
+import { createContext, useContext } from "react";
 interface UserContextProps {
     user: Author;
-    userPosts: PostsConnection;  // Add userPosts to the context
+    username: string;
     children: React.ReactNode;
 }
 
@@ -21,7 +18,7 @@ export const useUser = () => {
     return context;
 };
 
-export const UserProvider: React.FC<UserContextProps> = ({ user, userPosts, children }) => {
-    return <UserContext.Provider value={{ user, userPosts, children }}>{children}</UserContext.Provider>;
+export const UserProvider: React.FC<UserContextProps> = ({ user, username, children }) => {
+    return <UserContext.Provider value={{ user, username, children }}>{children}</UserContext.Provider>;
 };
 
