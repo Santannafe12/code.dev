@@ -22,34 +22,12 @@ const GET_AUTHOR = gql`
 const GET_AUTHOR_POSTS = gql`
   query AuthorPostsConnection(
     $username: String!
-    $first: Int!
-    $after: String
   ) {
     postsConnection(
-      first: $first
-      after: $after
       where: { authorRelationship: { username: $username } }
     ) {
-      pageInfo {
-        endCursor
-        hasNextPage
-      }
       aggregate {
         count
-      }
-      edges {
-        node {
-          id
-          createdAt
-          title
-          slug
-          description
-          trending
-          categoriesRelationship {
-            id
-            title
-          }
-        }
       }
     }
   }
@@ -66,13 +44,11 @@ export async function getAuthor(username: string): Promise<Author> {
 
 export async function getAuthorPosts(
   username: string,
-  first: number,
-  after: string | null
 ): Promise<PostsConnection> {
   const client = getClient();
   const { data } = await client.query({
     query: GET_AUTHOR_POSTS,
-    variables: { username, first, after },
+    variables: { username},
     context: {
       fetchOptions: {
         next: {

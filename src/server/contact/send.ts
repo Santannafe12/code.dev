@@ -1,7 +1,7 @@
 "use server";
 
-import { AirbnbReviewEmail } from "@/src/components/email-template";
-import { formSchema } from "@/src/components/home/contact";
+import { AirbnbReviewEmail } from "@/src/components/templates/email-template";
+import { formSchema } from "@/src/components/forms/form-contact";
 import { Resend } from "resend";
 import { z } from "zod";
 

@@ -1,17 +1,15 @@
-import UserHeader from "@/src/components/user/user-header"
-import Tabs from "@/src/components/user/tabs"
-import { UserProvider } from "@/src/context/user"
-import { getAuthor } from "@/src/server/actions/author"
+import { getAuthor, getAuthorPosts } from "@/src/server/actions/author";
+import UserContainer from "@/src/containers/user/user-container";
 
-export default async function Page({ params }: { params: { username: string } }) {
-    const user = await getAuthor(params.username)
+export default async function Page({
+  params,
+}: {
+  params: { username: string };
+}) {
+  const [user, userPostsCount] = await Promise.all([
+    getAuthor(params.username),
+    getAuthorPosts(params.username),
+  ]);
 
-    return (
-        <div className="w-11/12 sm:w-10/12 m-auto space-y-16 sm:space-y-32 min-h-screen">
-            <UserProvider user={user} username={params.username}>
-                <UserHeader />
-                <Tabs />
-            </UserProvider>
-        </div>
-    )
+  return <UserContainer user={user} userPostsCount={userPostsCount} />;
 }

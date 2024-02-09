@@ -4,7 +4,7 @@ import { getClient } from "../graphql/apollo-client";
 import { Post } from "@/types/data";
 import { gql } from "@apollo/client";
 
-import { postsPerPage } from "@/lib/utils";
+import { postsPerPage } from "@/src/utils/utils";
 
 const GET_POSTS = gql`
   query Posts($skip: Int!, $postsPerPage: Int!, $searchTerm: String) {
