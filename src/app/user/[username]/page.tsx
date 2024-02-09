@@ -1,4 +1,4 @@
-import { getAuthor, getAuthorPosts } from "@/src/server/actions/author";
+import { getAuthor, getAuthorPosts } from "@/server/actions/author";
 import UserContainer from "@/src/containers/user/user-container";
 
 export default async function Page({

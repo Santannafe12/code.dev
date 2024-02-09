@@ -1,4 +1,3 @@
-import { Post as PostType } from "@/types/data";
 import {
   TypographyH1,
   TypographyH2,
@@ -16,8 +15,9 @@ import {
 } from "../../../_ui-shadcn/avatar";
 import Link from "next/link";
 import { Badge } from "../../../_ui-shadcn/badge";
+import { Post } from "@/src/types/data";
 
-export default function PostSection({ post }: { post: PostType }) {
+export default function PostSection({ post }: { post: Post }) {
   return (
     <div className="space-y-8">
       <section>

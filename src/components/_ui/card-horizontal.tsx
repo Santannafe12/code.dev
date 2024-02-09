@@ -10,7 +10,7 @@ import {
 import Link from "next/link";
 import { Badge } from "../_ui-shadcn/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "../_ui-shadcn/avatar";
-import { PostProps } from "@/types/data";
+import { PostProps } from "@/src/types/data";
 
 export default function CardHorizontal({ post }: PostProps) {
   return (

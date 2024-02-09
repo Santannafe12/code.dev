@@ -1,6 +1,6 @@
 import { postsPerPage } from "@/src/utils/utils";
-import { getPosts, getPostsCount } from "@/src/server/actions/posts";
 import PostsContainer from "@/src/containers/posts/posts-container";
+import { getPosts, getPostsCount } from "@/server/actions/posts";
 
 export default async function Page({
   searchParams,

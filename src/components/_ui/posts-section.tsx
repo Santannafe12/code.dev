@@ -6,10 +6,10 @@ import { Button as ButtonUI } from "../_ui-shadcn/button";
 
 import { TypographyH1 } from "../templates/typography";
 
-import { Post } from "@/types/data";
 import Search from "./search";
 import HorizontalCardUI from "./card-horizontal";
 import PaginationUI from "./pagination";
+import { Post } from "@/src/types/data";
 
 type PostsProps = {
   posts: Post[];

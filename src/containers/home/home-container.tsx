@@ -2,7 +2,7 @@ import Carousel from "@/src/components/carousel/carousel";
 import Contact from "@/src/components/forms/form-contact";
 import FAQ from "@/src/components/pages/home/faq/faq";
 import { PostsSection } from "@/src/components/_ui/posts-section";
-import { Post } from "@/types/data";
+import { Post } from "@/src/types/data";
 
 export default function HomeContainer({
   posts,

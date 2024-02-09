@@ -1,5 +1,5 @@
+import { Post } from "@/src/types/data";
 import { getClient } from "../graphql/apollo-client";
-import { Post } from "@/types/data";
 import { gql } from "@apollo/client";
 
 const GET_RELATED_POSTS = gql`

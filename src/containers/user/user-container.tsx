@@ -1,7 +1,7 @@
 import UserHeader from "@/src/components/layout/headers/user/header-user";
 import UserAbout from "@/src/components/pages/user/user-about/about";
 import UserPosts from "@/src/components/pages/user/user-posts/posts";
-import { Author, PostsConnection } from "@/types/data";
+import { Author, PostsConnection } from "@/src/types/data";
 
 export default function UserContainer({
   user,

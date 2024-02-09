@@ -1,13 +1,13 @@
 import Carousel from "@/src/components/carousel/carousel";
 import PostSection from "@/src/components/pages/post/post-section/post";
-import { Post as PostType } from "@/types/data";
+import { Post } from "@/src/types/data";
 
 export default function PostContainer({
   post,
   relatedPosts,
 }: {
-  post: PostType;
-  relatedPosts: PostType[];
+  post: Post;
+  relatedPosts: Post[];
 }) {
   return (
     <div className="w-full space-y-16 sm:space-y-32 min-h-screen">

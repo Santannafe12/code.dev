@@ -1,12 +1,12 @@
 "use client";
 
+import { Author } from "@/src/types/data";
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
 } from "../../../_ui-shadcn/avatar";
 import { TypographyH1, TypographyMuted } from "../../../templates/typography";
-import { Author } from "@/types/data";
 
 export default function UserHeader({ user }: { user: Author }) {
   return (

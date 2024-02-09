@@ -1,10 +1,10 @@
 "use server";
 
 import { getClient } from "../graphql/apollo-client";
-import { Post } from "@/types/data";
 import { gql } from "@apollo/client";
 
 import { postsPerPage } from "@/src/utils/utils";
+import { Post } from "@/src/types/data";
 
 const GET_POSTS = gql`
   query Posts($skip: Int!, $postsPerPage: Int!, $searchTerm: String) {

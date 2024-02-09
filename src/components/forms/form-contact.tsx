@@ -27,7 +27,7 @@ import {
 import { toast } from "../_ui-shadcn/use-toast";
 import { TypographyLead } from "../templates/typography";
 import { useRef } from "react";
-import { send } from "@/src/server/contact/send";
+import { send } from "@/server/contact/send";
 
 export const formSchema = z.object({
   name: z.string().min(5, {

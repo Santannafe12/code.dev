@@ -2,7 +2,6 @@
 
 import Autoplay from "embla-carousel-autoplay";
 
-import { Post } from "@/types/data";
 import { TypographyH1 } from "../templates/typography";
 import {
   Carousel as CarouselUI,
@@ -12,16 +11,14 @@ import {
   CarouselPrevious,
 } from "../_ui-shadcn/carousel";
 import CardVertical from "../_ui/card-vertical";
+import { Post } from "@/src/types/data";
 
 type TrendingPostsProps = {
   posts: Post[];
   typography: string;
 };
 
-export default function Carousel({
-  posts,
-  typography,
-}: TrendingPostsProps) {
+export default function Carousel({ posts, typography }: TrendingPostsProps) {
   return (
     <section>
       <TypographyH1>{typography}</TypographyH1>

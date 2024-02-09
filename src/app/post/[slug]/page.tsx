@@ -1,5 +1,5 @@
-import { getPost } from "@/src/server/actions/post";
-import { getRelatedPosts } from "@/src/server/actions/relatedPosts";
+import { getPost } from "@/server/actions/post";
+import { getRelatedPosts } from "@/server/actions/relatedPosts";
 import PostContainer from "@/src/containers/post/post-container";
 
 export default async function Page({ params }: { params: { slug: string } }) {

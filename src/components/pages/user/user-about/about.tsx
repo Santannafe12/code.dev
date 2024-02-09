@@ -1,5 +1,5 @@
+import { Author } from "@/src/types/data";
 import { TypographyH3, TypographyMuted } from "../../../templates/typography";
-import { Author } from "@/types/data";
 
 export default function UserAbout({ user }: { user: Author }) {
   return (

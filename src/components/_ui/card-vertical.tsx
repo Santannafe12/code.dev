@@ -10,7 +10,7 @@ import {
 import Link from "next/link";
 import { Badge } from "../_ui-shadcn/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "../_ui-shadcn/avatar";
-import { Post } from "@/types/data";
+import { Post } from "@/src/types/data";
 
 export default function CardVertical({ post }: { post: Post }) {
   return (

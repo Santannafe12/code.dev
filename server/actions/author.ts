@@ -1,8 +1,8 @@
 "use server";
 
-import { Author, PostsConnection } from "@/types/data";
 import { gql } from "@apollo/client";
 import { getClient } from "../graphql/apollo-client";
+import { Author, PostsConnection } from "@/src/types/data";
 
 const GET_AUTHOR = gql`
   query Author($username: String!) {

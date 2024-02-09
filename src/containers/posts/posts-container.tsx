@@ -1,6 +1,6 @@
 import { PostsSection } from "@/src/components/_ui/posts-section";
 import { NotFoundPosts } from "@/src/components/pages/posts/not-found/not-found";
-import { Post } from "@/types/data";
+import { Post } from "@/src/types/data";
 
 export default function PostsContainer({
   posts,
