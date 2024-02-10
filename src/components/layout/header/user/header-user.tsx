@@ -16,7 +16,7 @@ export default function UserHeader({ user }: UserHeaderProps) {
   return (
     <section className="flex items-center gap-4">
       <Avatar className="w-32 h-32">
-        <AvatarImage src={user.avatar.url} alt="@shadcn" />
+        <AvatarImage src={user.avatar.url} alt={`Avatar de ${user.name}`} />
         <AvatarFallback>{user.name}</AvatarFallback>
       </Avatar>
       <div>

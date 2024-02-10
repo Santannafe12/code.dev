@@ -3,6 +3,8 @@ import { getRelatedPosts } from "@/server/actions/components/carousel/relatedPos
 import PostPage from "@/src/components/pages/post/postPage";
 import { Metadata, ResolvingMetadata } from 'next'
 import { redirect } from "next/navigation";
+import { Suspense } from "react";
+import SkeletonDemo from "@/src/components/common/skeleton/skeleton";
 
 type Props = {
   params: { slug: string }
@@ -50,5 +52,9 @@ export default async function Page({ params }: { params: { slug: string } }) {
     post.slug
   );
 
-  return <PostPage post={post} relatedPosts={relatedPosts} />;
+  return (
+    <Suspense fallback={<SkeletonDemo />}>
+      <PostPage post={post} relatedPosts={relatedPosts} />;
+    </Suspense>
+  );
 }

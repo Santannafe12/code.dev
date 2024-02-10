@@ -16,9 +16,10 @@ import { CarouselGraphQL } from "@/src/types/components/carousel";
 type CarouselProps = {
   posts: CarouselGraphQL[];
   typography: string;
+  priority?: boolean;
 };
 
-export default function Carousel({ posts, typography }: CarouselProps) {
+export default function Carousel({ posts, typography, priority }: CarouselProps) {
   return (
     <section>
       <TypographyH1>{typography}</TypographyH1>
@@ -35,8 +36,8 @@ export default function Carousel({ posts, typography }: CarouselProps) {
       >
         <CarouselContent>
           {posts.map((post, index) => (
-            <CarouselItem key={index} className="lg:basis-1/2 2xl:basis-1/4">
-              <CardVertical post={post} />
+            <CarouselItem key={index} className="md:basis-1/2 2xl:basis-1/4">
+              <CardVertical post={post} priority={priority} />
             </CarouselItem>
           ))}
         </CarouselContent>

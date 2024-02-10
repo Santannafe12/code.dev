@@ -1,7 +1,9 @@
 import { getUser, getUserPostsCount } from "@/server/actions/user/user";
+import SkeletonDemo from "@/src/components/common/skeleton/skeleton";
 import UserPage from "@/src/components/pages/user/userPage";
 import { Metadata, ResolvingMetadata } from "next";
 import { redirect } from "next/navigation";
+import { Suspense } from "react";
 
 type Props = {
   params: { username: string }
@@ -44,5 +46,9 @@ export default async function Page({
     redirect("/404");
   }
 
-  return <UserPage user={user} userPostsCount={userPostsCount} />;
+  return (
+    <Suspense fallback={<SkeletonDemo />}>
+      <UserPage user={user} userPostsCount={userPostsCount} />;
+    </Suspense>
+  )
 }

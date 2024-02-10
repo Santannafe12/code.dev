@@ -179,8 +179,9 @@ export default function Contact() {
               </FormItem>
             )}
           />
-          <Button type="submit" className="w-36">
+          <Button type="submit" className="w-36" aria-label="Botão para confirmação de envio do formulário">
             Enviar
+            <span className="sr-only">Botão para confirmação de envio do formulário</span>
           </Button>
         </form>
       </Form>

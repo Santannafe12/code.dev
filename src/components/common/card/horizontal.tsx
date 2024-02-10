@@ -14,19 +14,29 @@ import { PostsGraphQL } from "@/src/types/pages/posts/posts";
 
 type CardHorizontalProps = {
   post: PostsGraphQL
+  priority?: boolean
 }
 
-export default function CardHorizontal({ post }: CardHorizontalProps) {
+export default function CardHorizontal({ post, priority }: CardHorizontalProps) {
   return (
-    <section>
-      <Card className="md:grow md:rounded-r-md md:rounded-l-none md:overflow-auto flex flex-col xl:flex-row w-full relative group overflow-hidden rounded-lg">
+      <Card className="rounded-l-none flex flex-col lg:flex-row relative group overflow-hidden rounded-lg">
         <Image
-          width={1920}
-          height={1080}
+          width={600}
+          height={331}
+          sizes="calc(5.81vw + 310px)"
+          priority={!!priority}
           src={post.image.url}
           alt={`Imagem de ${post.title}`}
-          priority
-          className="aspect-video w-full max-h-[250px] object-cover xl:max-h-max xl:max-w-[450px] rounded-l-md"
+          className="object-cover rounded-l-md hidden lg:block"
+        />
+        <Image
+          width={600}
+          height={331}
+          sizes="calc(5.81vw + 310px)"
+          priority={!!priority}
+          src={post.image.url}
+          alt={`Imagem de ${post.title}`}
+          className="object-cover rounded-l-md block lg:hidden w-full max-h-[350px]"
         />
         {post.trending === true ? (
           <div className="md:hidden absolute top-0 right-0 bg-red-500 text-white text-sm px-2 py-1 rounded-bl-md font-semibold cursor-default">
@@ -36,8 +46,9 @@ export default function CardHorizontal({ post }: CardHorizontalProps) {
         <section className="w-full">
           <CardHeader className="space-y-3">
             <section className="flex justify-between gap-2">
-              <Link href={`/post/${post.slug}`} className="col-span-8">
+              <Link href={`/post/${post.slug}`} className="col-span-8" aria-label="Link para a publicação">
                 <CardTitle>{post.title}</CardTitle>
+                <span className="sr-only">Link para a publicação</span>
               </Link>
               {post.trending === true ? (
                 <div className="hidden md:flex max-h-[30px] min-w-fit text-center bg-red-500 text-white text-sm px-2 py-1 rounded-bl-md rounded-tr-md font-semibold cursor-default">
@@ -65,14 +76,15 @@ export default function CardHorizontal({ post }: CardHorizontalProps) {
               <Avatar className="w-8 h-8">
                 <AvatarImage
                   src={post.userRelationship.avatar.url}
-                  alt="@shadcn"
+                  alt={`Avatar de ${post.userRelationship.name}`}
                 />
                 <AvatarFallback>{post.userRelationship.name}</AvatarFallback>
               </Avatar>
-              <Link href={`/user/${post.userRelationship.username}`}>
+              <Link href={`/user/${post.userRelationship.username}`} aria-label="Link para o perfil do usuário criador desta publicação">
                 <small className="text-sm font-medium leading-none">
                   {post.userRelationship.name}
                 </small>
+                <span className="sr-only">Link para o perfil do usuário criador desta publicação</span>
               </Link>
             </div>
             <div className="flex gap-2 items-center text-muted-foreground mt-1">
@@ -88,6 +100,5 @@ export default function CardHorizontal({ post }: CardHorizontalProps) {
           </CardFooter>
         </section>
       </Card>
-    </section>
   );
 }

@@ -36,9 +36,11 @@ export default function FAQ() {
             O código fonte deste site está disponível no meu Github,{" "}
             <Link
               href={"https://github.com/Santannafe12"}
+              aria-label="Link para o repositório do Github do criador deste projeto"
               target="_blank"
               className="text-blue-400 hover:underline"
             >
+              <span className="sr-only">Link para o repositório do Github do criador deste projeto</span>
               Felipe Sant&apos;Anna.
             </Link>
           </AccordionContent>

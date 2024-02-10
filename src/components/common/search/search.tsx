@@ -31,6 +31,7 @@ export default function Search() {
         className="pl-10"
         placeholder="Buscar publicações..."
         type="search"
+        aria-label="Buscar publicações"
         onChange={(e) => {
           handleSearch(e.target.value);
         }}

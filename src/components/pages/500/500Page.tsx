@@ -13,8 +13,9 @@ export default function InternalServerErrorPage() {
                     Caso o erro persista, entre em contato com o suporte.
                 </TypographyMuted>
             </section>
-            <Link href="/">
+            <Link href="/" aria-label="Link responsável por redirecionar a Página Home">
                 <Button className="rounded-lg">Retornar a Home</Button>
+                <span className="sr-only">Link para a página Home</span>
             </Link>
         </div>
     );

@@ -2,6 +2,8 @@ import { postsPerPage } from "@/src/utils/utils";
 import { getPosts, getPostsCount } from "@/server/actions/posts/posts";
 import PostsPage from "@/src/components/pages/posts/postsPage";
 import NotFoundPostsPage from "@/src/components/pages/posts/notFoundPostsPage";
+import { Suspense } from "react";
+import SkeletonDemo from "@/src/components/common/skeleton/skeleton";
 
 export const metadata = {
   title: "Publicações",
@@ -28,10 +30,12 @@ export default async function Page({
   }
 
   return (
-    <PostsPage
-      posts={posts}
-      postsCount={postsCount}
-      totalPages={totalPages}
-    />
+    <Suspense fallback={<SkeletonDemo />}>
+      <PostsPage
+        posts={posts}
+        postsCount={postsCount}
+        totalPages={totalPages}
+      />
+    </Suspense>
   );
 }

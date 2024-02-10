@@ -17,7 +17,7 @@ export default function PostPage({
       </section>
       <section className="mx-auto w-11/12 sm:w-10/12 md:w-9/12 xl:w-8/12 2xl:w-7/12">
         {relatedPosts.length > 0 ? (
-          <Carousel posts={relatedPosts} typography="Posts Similares:" />
+          <Carousel posts={relatedPosts} typography="Posts Similares:" priority={false} />
         ) : null}
       </section>
     </div>

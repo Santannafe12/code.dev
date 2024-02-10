@@ -2,14 +2,14 @@
 
 import Link from "next/link";
 
-import { Button as ButtonUI } from "../../../_ui/button";
+import { Button } from "../../../_ui/button";
 
 import { TypographyH1 } from "../../typography/typography";
 
 import Search from "../../search/search";
-import HorizontalCardUI from "../../card/horizontal";
-import PaginationUI from "../../pagination/pagination";
 import { PostsGraphQL } from "@/src/types/pages/posts/posts";
+import CardHorizontal from "../../card/horizontal";
+import Pagination from "../../pagination/pagination";
 
 type PostsProps = {
   posts: PostsGraphQL[];
@@ -18,6 +18,7 @@ type PostsProps = {
   title: string;
   postsCount?: number;
   totalPages: number;
+  priority?: boolean;
 };
 
 export function PostsSection({ ...props }: PostsProps) {
@@ -29,21 +30,23 @@ export function PostsSection({ ...props }: PostsProps) {
       </div>
       <div className="flex flex-col gap-8">
         {props.posts.map((post, index) => (
-          <HorizontalCardUI key={index} post={post} />
+          <CardHorizontal key={index} post={post} priority={!!props.priority} />
         ))}
       </div>
       {props.pagination ? (
-        <PaginationUI totalPages={props.totalPages} />
+        <Pagination totalPages={props.totalPages} />
       ) : (
         <div className="flex w-full justify-center">
-          <Link href={"/posts"}>
-            <ButtonUI
+          <Link href={"/posts"} aria-label="Link responsável por redirecionar a página de publicações">
+            <Button
               variant="default"
               className="self-center text-base"
               size="lg"
+              aria-label="Ver mais publicações"
             >
               Ver mais
-            </ButtonUI>
+              <span className="sr-only">Ver mais publicações</span>
+            </Button>
           </Link>
         </div>
       )}

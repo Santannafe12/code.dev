@@ -44,9 +44,10 @@ export default function Header() {
     <header className="sticky top-0 left-0 right-0 z-50 border-b backdrop-blur-lg mb-8">
       <section className="flex items-center justify-between px-4 sm:px-12 sm:mb-0 py-2">
         <div className="flex items-center gap-2">
-          <Link className="flex items-center gap-2" href="/">
+          <Link className="flex items-center gap-2" href="/" aria-label="Link responsável por redirecionar a Página Home">
             <Code className="h-6 w-6" />
             <span className="text-lg font-semibold">code.dev</span>
+            <span className="sr-only">Link para a página Home</span>
           </Link>
         </div>
         <div className="flex items-center gap-2 sm:gap-12">
@@ -59,6 +60,7 @@ export default function Header() {
                     href={link.href}
                   >
                     {link.name}
+                    <span className="sr-only">Link para a página {link.name}</span>
                   </NavigationMenuLink>
                 </NavigationMenuItem>
               ))}
@@ -68,6 +70,7 @@ export default function Header() {
             variant="outline"
             className="p-2 sm:hidden"
             onClick={handleNavOpen}
+            aria-label="Botão responsável por alternar a visibilidade do menu de navegação"
           >
             {isNavOpen ? <X /> : <Menu />}
           </Button>
@@ -83,8 +86,9 @@ function MobileHeader() {
   return (
     <div className="sm:hidden flex flex-col gap-3 px-12 py-2 space-y-1">
       {links.map((link, index) => (
-        <Link key={index} href={link.href} className="font-medium">
+        <Link key={index} href={link.href} className="font-medium" aria-label="Link responsável por alterar a página">
           {link.name}
+          <span className="sr-only">Link para a página {link.name}</span>
         </Link>
       ))}
     </div>

@@ -19,6 +19,7 @@ export default function PostsPage({
           search={true}
           postsCount={postsCount}
           totalPages={totalPages}
+          priority={true}
         />
     </div>
   );

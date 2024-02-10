@@ -28,32 +28,38 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
         <PaginationItem>
           <PaginationPrevious
             href={createPageURL(currentPage - 1)}
+            aria-label="Página anterior"
             className={
               currentPage <= 1
                 ? "pointer-events-none text-muted-foreground"
                 : ""
             }
           />
+          <span className="sr-only">Página anterior</span>
         </PaginationItem>
         {allPages.map((pageNumber, index) => (
           <PaginationItem key={index}>
             <PaginationLink
               href={createPageURL(pageNumber)}
+              aria-label="Página atual"
               isActive={currentPage === pageNumber}
             >
               {pageNumber}
+              <span className="sr-only">Página atual</span>
             </PaginationLink>
           </PaginationItem>
         ))}
         <PaginationItem>
           <PaginationNext
             href={createPageURL(currentPage + 1)}
+            aria-label="Próxima página"
             className={
               currentPage >= totalPages
                 ? "pointer-events-none text-muted-foreground"
                 : ""
             }
           />
+          <span className="sr-only">Próxima página</span>
         </PaginationItem>
       </PaginationContent>
     </PaginationUI>
