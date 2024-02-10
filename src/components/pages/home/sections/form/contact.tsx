@@ -136,14 +136,14 @@ export default function Contact() {
             control={form.control}
             name="select"
             render={({ field }) => (
-              <FormItem>
+              <FormItem aria-label="Formulário Selecione">
                 <FormLabel>Assunto</FormLabel>
                 <Select
                   onValueChange={field.onChange}
                   defaultValue={field.value}
                   aria-label="Assunto"
                 >
-                  <FormControl>
+                  <FormControl aria-label="Clique para selecionar uma opção">
                     <SelectTrigger>
                       <SelectValue placeholder="Selecione uma opção" aria-label="Selecione uma opção" />
                     </SelectTrigger>
@@ -151,10 +151,10 @@ export default function Contact() {
                   <SelectContent aria-label="Conteúdo">
                     <SelectGroup aria-label="Grupo">
                       <SelectLabel aria-label="Opções para selecionar">Opções</SelectLabel>
-                      <SelectItem value="post" aria-label="Post">Post</SelectItem>
-                      <SelectItem value="doubt" aria-label="Dúvida">Dúvida</SelectItem>
-                      <SelectItem value="design" aria-label="Design">Design</SelectItem>
-                      <SelectItem value="other" aria-label="Outro">Outro</SelectItem>
+                      <SelectItem value="post" aria-label="Botão de Post">Post</SelectItem>
+                      <SelectItem value="doubt" aria-label="Botão de Dúvida">Dúvida</SelectItem>
+                      <SelectItem value="design" aria-label="Botão de Design">Design</SelectItem>
+                      <SelectItem value="other" aria-label="Botão de Outro">Outro</SelectItem>
                     </SelectGroup>
                   </SelectContent>
                 </Select>
