@@ -1,6 +1,6 @@
 "use server";
 
-import { Post } from "@/src/types/data";
+import { PostsGraphQL } from "@/src/types/pages/posts/posts";
 import { getClient } from "../graphql/apollo-client";
 import { gql } from "@apollo/client";
 
@@ -16,7 +16,7 @@ const GET_TRENDING_POSTS = gql`
       image {
         url
       }
-      authorRelationship {
+      userRelationship {
         id
         name
         username
@@ -32,7 +32,7 @@ const GET_TRENDING_POSTS = gql`
   }
 `;
 
-export async function getTrendingPosts(): Promise<Post[]> {
+export async function getTrendingPosts(): Promise<PostsGraphQL[]> {
   const client = getClient();
   const { data } = await client.query({
     query: GET_TRENDING_POSTS,

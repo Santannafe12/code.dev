@@ -1,14 +1,18 @@
 "use client";
 
-import { Author } from "@/src/types/data";
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
 } from "../../../_ui-shadcn/avatar";
 import { TypographyH1, TypographyMuted } from "../../../templates/typography";
+import { UserGraphQL } from "@/src/types/pages/user/user";
 
-export default function UserHeader({ user }: { user: Author }) {
+type UserHeaderProps = {
+  user: UserGraphQL
+}
+
+export default function UserHeader({ user }: UserHeaderProps) {
   return (
     <section className="flex items-center gap-4">
       <Avatar className="w-32 h-32">

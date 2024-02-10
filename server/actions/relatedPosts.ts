@@ -1,4 +1,4 @@
-import { Post } from "@/src/types/data";
+import { PostsGraphQL } from "@/src/types/pages/posts/posts";
 import { getClient } from "../graphql/apollo-client";
 import { gql } from "@apollo/client";
 
@@ -20,7 +20,7 @@ const GET_RELATED_POSTS = gql`
       image {
         url
       }
-      authorRelationship {
+      userRelationship {
         id
         name
         username
@@ -39,7 +39,7 @@ const GET_RELATED_POSTS = gql`
 export async function getRelatedPosts(
   categoryTitles: string[],
   currentPostSlug: string
-): Promise<Post[]> {
+): Promise<PostsGraphQL[]> {
   const client = getClient();
   const { data } = await client.query({
     query: GET_RELATED_POSTS,

@@ -1,7 +1,11 @@
-import { Author } from "@/src/types/data";
 import { TypographyH3, TypographyMuted } from "../../../templates/typography";
+import { UserGraphQL } from "@/src/types/pages/user/user";
 
-export default function UserAbout({ user }: { user: Author }) {
+type UserAboutProps = {
+  user: UserGraphQL
+}
+
+export default function UserAbout({ user }: UserAboutProps) {
   return (
     <div className="space-y-2 w-full">
       <TypographyH3>Sobre {user.name}</TypographyH3>

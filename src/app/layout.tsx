@@ -3,9 +3,9 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "../providers/theme-provider";
-import Header from "../components/layout/headers/home/header-home";
 import { Toaster } from "../components/_ui-shadcn/toaster";
 import Footer from "../components/layout/footer/footer";
+import Header from "../components/layout/header/home/header-home";
 
 const inter = Inter({ subsets: ["latin"] });
 

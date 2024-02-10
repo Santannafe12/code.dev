@@ -1,6 +1,6 @@
 "use server";
 
-import { Post } from "@/src/types/data";
+import { PostGraphQL } from "@/src/types/pages/post/post";
 import { getClient } from "../graphql/apollo-client";
 import { gql } from "@apollo/client";
 
@@ -8,23 +8,20 @@ const GET_POST = gql`
   query Post($slug: String!) {
     post(where: { slug: $slug }) {
       id
+      createdAt
       title
       slug
-      trending
       description
-      createdAt
       content {
         raw
       }
       image {
         url
       }
-      authorRelationship {
+      userRelationship {
         id
         name
         username
-        biography
-        shortBio
         avatar {
           url
         }
@@ -37,7 +34,7 @@ const GET_POST = gql`
   }
 `;
 
-export async function getPost(slug: string): Promise<Post> {
+export async function getPost(slug: string): Promise<PostGraphQL> {
   const client = getClient();
   const { data } = await client.query({
     query: GET_POST,

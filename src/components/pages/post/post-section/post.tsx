@@ -15,9 +15,13 @@ import {
 } from "../../../_ui-shadcn/avatar";
 import Link from "next/link";
 import { Badge } from "../../../_ui-shadcn/badge";
-import { Post } from "@/src/types/data";
+import { PostGraphQL } from "@/src/types/pages/post/post";
 
-export default function PostSection({ post }: { post: Post }) {
+type PostSectionProps = {
+  post: PostGraphQL;
+}
+
+export default function PostSection({ post }: PostSectionProps) {
   return (
     <div className="space-y-8">
       <section>
@@ -66,19 +70,19 @@ export default function PostSection({ post }: { post: Post }) {
       </section>
       <section>
         <Link
-          href={`/user/${post.authorRelationship.username}`}
+          href={`/user/${post.userRelationship.username}`}
           className="flex items-center gap-2 max-w-fit"
         >
           <Avatar className="w-16 h-16">
             <AvatarImage
-              src={post.authorRelationship.avatar.url}
+              src={post.userRelationship.avatar.url}
               alt="@shadcn"
             />
-            <AvatarFallback>{post.authorRelationship.name}</AvatarFallback>
+            <AvatarFallback>{post.userRelationship.name}</AvatarFallback>
           </Avatar>
           <div>
             <span className="text-lg font-medium leading-none">
-              {post.authorRelationship.name}
+              {post.userRelationship.name}
             </span>
             <span className="text-sm text-muted-foreground block">
               Autor do post

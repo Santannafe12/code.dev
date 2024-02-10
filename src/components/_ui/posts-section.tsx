@@ -9,10 +9,10 @@ import { TypographyH1 } from "../templates/typography";
 import Search from "./search";
 import HorizontalCardUI from "./card-horizontal";
 import PaginationUI from "./pagination";
-import { Post } from "@/src/types/data";
+import { PostsGraphQL } from "@/src/types/pages/posts/posts";
 
 type PostsProps = {
-  posts: Post[];
+  posts: PostsGraphQL[];
   pagination?: boolean;
   search?: boolean;
   title: string;

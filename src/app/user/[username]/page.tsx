@@ -1,4 +1,4 @@
-import { getAuthor, getAuthorPosts } from "@/server/actions/author";
+import { getUser, getUserPosts } from "@/server/actions/user";
 import UserContainer from "@/src/containers/user/user-container";
 
 export default async function Page({
@@ -7,8 +7,8 @@ export default async function Page({
   params: { username: string };
 }) {
   const [user, userPostsCount] = await Promise.all([
-    getAuthor(params.username),
-    getAuthorPosts(params.username),
+    getUser(params.username),
+    getUserPosts(params.username),
   ]);
 
   return <UserContainer user={user} userPostsCount={userPostsCount} />;

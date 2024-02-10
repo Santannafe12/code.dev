@@ -1,13 +1,14 @@
 import { PostsSection } from "@/src/components/_ui/posts-section";
 import { NotFoundPosts } from "@/src/components/pages/posts/not-found/not-found";
-import { Post } from "@/src/types/data";
+import { PostGraphQL } from "@/src/types/pages/post/post";
+import { PostsGraphQL } from "@/src/types/pages/posts/posts";
 
 export default function PostsContainer({
   posts,
   postsCount,
   totalPages,
 }: {
-  posts: Post[];
+  posts: PostsGraphQL[];
   postsCount: number;
   totalPages: number;
 }) {

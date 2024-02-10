@@ -2,16 +2,18 @@
 
 import { gql } from "@apollo/client";
 import { getClient } from "../graphql/apollo-client";
-import { Author, PostsConnection } from "@/src/types/data";
+import { PostsConnection } from "@/src/types/_data/data";
+import { UserGraphQL } from "@/src/types/pages/user/user";
 
-const GET_AUTHOR = gql`
-  query Author($username: String!) {
-    author(where: { username: $username }) {
+
+const GET_USER = gql`
+  query User($username: String!) {
+    userAPI(where: { username: $username }) {
       id
+      createdAt
       name
       username
       biography
-      createdAt
       avatar {
         url
       }
@@ -19,12 +21,12 @@ const GET_AUTHOR = gql`
   }
 `;
 
-const GET_AUTHOR_POSTS = gql`
-  query AuthorPostsConnection(
+const GET_USER_POSTS = gql`
+  query UserPostsConnection(
     $username: String!
   ) {
     postsConnection(
-      where: { authorRelationship: { username: $username } }
+      where: { userRelationship: { username: $username } }
     ) {
       aggregate {
         count
@@ -33,21 +35,21 @@ const GET_AUTHOR_POSTS = gql`
   }
 `;
 
-export async function getAuthor(username: string): Promise<Author> {
+export async function getUser(username: string): Promise<UserGraphQL> {
   const client = getClient();
   const { data } = await client.query({
-    query: GET_AUTHOR,
+    query: GET_USER,
     variables: { username },
   });
-  return data.author;
+  return data.userAPI;
 }
 
-export async function getAuthorPosts(
+export async function getUserPosts(
   username: string,
 ): Promise<PostsConnection> {
   const client = getClient();
   const { data } = await client.query({
-    query: GET_AUTHOR_POSTS,
+    query: GET_USER_POSTS,
     variables: { username},
     context: {
       fetchOptions: {

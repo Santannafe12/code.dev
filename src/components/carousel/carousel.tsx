@@ -11,10 +11,10 @@ import {
   CarouselPrevious,
 } from "../_ui-shadcn/carousel";
 import CardVertical from "../_ui/card-vertical";
-import { Post } from "@/src/types/data";
+import { CarouselGraphQL } from "@/src/types/components/carousel";
 
 type TrendingPostsProps = {
-  posts: Post[];
+  posts: CarouselGraphQL[];
   typography: string;
 };
 

@@ -4,7 +4,7 @@ import { getClient } from "../graphql/apollo-client";
 import { gql } from "@apollo/client";
 
 import { postsPerPage } from "@/src/utils/utils";
-import { Post } from "@/src/types/data";
+import { PostsGraphQL } from "@/src/types/pages/posts/posts";
 
 const GET_POSTS = gql`
   query Posts($skip: Int!, $postsPerPage: Int!, $searchTerm: String) {
@@ -23,7 +23,7 @@ const GET_POSTS = gql`
       image {
         url
       }
-      authorRelationship {
+      userRelationship {
         id
         name
         username
@@ -52,7 +52,7 @@ const GET_POSTS_COUNT = gql`
 export async function getPosts(
   skip: number = 0,
   searchTerm: string = ""
-): Promise<Post[]> {
+): Promise<PostsGraphQL[]> {
   const client = getClient();
   const { data } = await client.query({
     query: GET_POSTS,

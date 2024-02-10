@@ -10,19 +10,23 @@ import {
 import Link from "next/link";
 import { Badge } from "../_ui-shadcn/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "../_ui-shadcn/avatar";
-import { Post } from "@/src/types/data";
+import { PostsGraphQL } from "@/src/types/pages/posts/posts";
 
-export default function CardVertical({ post }: { post: Post }) {
+type CardVerticalProps = {
+  post: PostsGraphQL;
+};
+
+export default function CardVertical({ post }: CardVerticalProps) {
   return (
     <div className="p-1">
       <Card className="relative group overflow-hidden rounded-lg">
         <Image
-          src={post.image.url}
-          alt="placeholder"
           width={1920}
-          height={600}
-          className="rounded-t-md border w-full max-h-[600px] object-cover"
+          height={1080}
+          src={post.image.url}
+          alt={`Imagem de ${post.title}`}
           priority
+          className="rounded-t-md border w-full max-h-[600px] object-cover"
         />
         {post.trending ? (
           <div className="absolute top-0 right-0 bg-red-500 text-white text-sm px-2 py-1 rounded-bl-md font-semibold cursor-default">
@@ -54,17 +58,17 @@ export default function CardVertical({ post }: { post: Post }) {
           <div className="flex items-center gap-2">
             <Avatar className="w-8 h-8">
               <AvatarImage
-                src={post.authorRelationship.avatar.url}
+                src={post.userRelationship.avatar.url}
                 alt="@shadcn"
               />
-              <AvatarFallback>{post.authorRelationship.name}</AvatarFallback>
+              <AvatarFallback>{post.userRelationship.name}</AvatarFallback>
             </Avatar>
             <section className="flex flex-col">
-              <Link href={`/user/${post.authorRelationship.username || "/"}`}>
+              <Link href={`/user/${post.userRelationship.username || "/"}`}>
                 <small className="text-sm font-medium leading-none">
-                  {post.authorRelationship.name.length > 25
-                    ? post.authorRelationship.name.slice(0, 25) + "..."
-                    : post.authorRelationship.name}
+                  {post.userRelationship.name.length > 25
+                    ? post.userRelationship.name.slice(0, 25) + "..."
+                    : post.userRelationship.name}
                 </small>
               </Link>
               <small className="text-sm text-muted-foreground">

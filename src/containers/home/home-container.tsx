@@ -2,14 +2,15 @@ import Carousel from "@/src/components/carousel/carousel";
 import Contact from "@/src/components/forms/form-contact";
 import FAQ from "@/src/components/pages/home/faq/faq";
 import { PostsSection } from "@/src/components/_ui/posts-section";
-import { Post } from "@/src/types/data";
+import { PostsGraphQL } from "@/src/types/pages/posts/posts";
+import { TrendingPostsGraphQL } from "@/src/types/pages/home/home";
 
 export default function HomeContainer({
   posts,
   trendingPosts,
 }: {
-  posts: Post[];
-  trendingPosts: Post[];
+  posts: PostsGraphQL[];
+  trendingPosts: TrendingPostsGraphQL[];
 }) {
   return (
     <section className="m-auto min-h-screen w-11/12 space-y-16 sm:space-y-32 lg:w-10/12">

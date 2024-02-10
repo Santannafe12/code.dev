@@ -1,13 +1,14 @@
-import UserHeader from "@/src/components/layout/headers/user/header-user";
+import UserHeader from "@/src/components/layout/header/user/header-user";
 import UserAbout from "@/src/components/pages/user/user-about/about";
-import UserPosts from "@/src/components/pages/user/user-posts/posts";
-import { Author, PostsConnection } from "@/src/types/data";
+import UserPosts from "@/src/components/pages/user/user-posts-section/user-posts";
+import { PostsConnection } from "@/src/types/_data/data";
+import { UserGraphQL } from "@/src/types/pages/user/user";
 
 export default function UserContainer({
   user,
   userPostsCount,
 }: {
-  user: Author;
+  user: UserGraphQL;
   userPostsCount: PostsConnection;
 }) {
   return (

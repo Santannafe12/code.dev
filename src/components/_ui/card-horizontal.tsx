@@ -10,9 +10,13 @@ import {
 import Link from "next/link";
 import { Badge } from "../_ui-shadcn/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "../_ui-shadcn/avatar";
-import { PostProps } from "@/src/types/data";
+import { PostsGraphQL } from "@/src/types/pages/posts/posts";
 
-export default function CardHorizontal({ post }: PostProps) {
+type CardHorizontalProps = {
+  post: PostsGraphQL
+}
+
+export default function CardHorizontal({ post }: CardHorizontalProps) {
   return (
     <section>
       <Card className="md:grow md:rounded-r-md md:rounded-l-none md:overflow-auto flex flex-col xl:flex-row w-full relative group overflow-hidden rounded-lg">
@@ -60,14 +64,14 @@ export default function CardHorizontal({ post }: PostProps) {
             <div className="flex items-center gap-2">
               <Avatar className="w-8 h-8">
                 <AvatarImage
-                  src={post.authorRelationship.avatar.url}
+                  src={post.userRelationship.avatar.url}
                   alt="@shadcn"
                 />
-                <AvatarFallback>{post.authorRelationship.name}</AvatarFallback>
+                <AvatarFallback>{post.userRelationship.name}</AvatarFallback>
               </Avatar>
-              <Link href={`/user/${post.authorRelationship.username}`}>
+              <Link href={`/user/${post.userRelationship.username}`}>
                 <small className="text-sm font-medium leading-none">
-                  {post.authorRelationship.name}
+                  {post.userRelationship.name}
                 </small>
               </Link>
             </div>
