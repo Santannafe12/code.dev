@@ -1,15 +1,48 @@
-import { getUser, getUserPosts } from "@/server/actions/user/user";
+import { getUser, getUserPostsCount } from "@/server/actions/user/user";
 import UserPage from "@/src/components/pages/user/userPage";
+import { Metadata, ResolvingMetadata } from "next";
+import { redirect } from "next/navigation";
+
+type Props = {
+  params: { username: string }
+}
+
+export async function generateMetadata(
+  { params }: Props,
+): Promise<Metadata> {
+  try {
+    const username = params.username
+
+    const user = await getUser(username)
+
+    return {
+      title: user.username,
+      description: user.biography || "Não conhecemos muito sobre este usuário, mas ele parece ser uma pessoa legal.",
+    }
+  }
+  catch (error) {
+    console.error('Erro ao gerar metadados:', error);
+
+    return {
+      title: 'Erro ao carregar metadados',
+      description: 'Ocorreu um erro ao carregar os metadados do usuário.',
+    };
+  }
+}
 
 export default async function Page({
-  params,
-}: {
-  params: { username: string };
-}) {
+  params
+}:
+  Props
+) {
   const [user, userPostsCount] = await Promise.all([
     getUser(params.username),
-    getUserPosts(params.username),
+    getUserPostsCount(params.username),
   ]);
+
+  if (!user) {
+    redirect("/404");
+  }
 
   return <UserPage user={user} userPostsCount={userPostsCount} />;
 }

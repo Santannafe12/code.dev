@@ -10,7 +10,10 @@ import Header from "../components/layout/header/home/header-home";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "code.dev",
+  title: {
+    default: 'Home',
+    template: '%s - code.dev',
+  },
   description: "Aqui você encontra de tudo um pouco sobre programação",
 };
 

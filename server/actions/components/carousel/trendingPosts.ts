@@ -3,6 +3,7 @@
 import { PostsGraphQL } from "@/src/types/pages/posts/posts";
 import { getClient } from "@/server/db/apollo-client/apollo-client";
 import { gql } from "@apollo/client";
+import { redirect } from "next/navigation";
 
 const GET_TRENDING_POSTS = gql`
   query TrendingPosts {
@@ -33,16 +34,22 @@ const GET_TRENDING_POSTS = gql`
 `;
 
 export async function getTrendingPosts(): Promise<PostsGraphQL[]> {
-  const client = getClient();
-  const { data } = await client.query({
-    query: GET_TRENDING_POSTS,
-    context: {
-      fetchOptions: {
-        next: {
-          revalidate: 60,
+  try {
+    const client = getClient();
+    const { data } = await client.query({
+      query: GET_TRENDING_POSTS,
+      context: {
+        fetchOptions: {
+          next: {
+            revalidate: 60,
+          },
         },
       },
-    },
-  });
-  return data.posts;
+    });
+    return data.posts;
+  } catch (error) {
+    console.error("Erro ao buscar posts em destaque:", error);
+  }
+
+  redirect("/500");
 }

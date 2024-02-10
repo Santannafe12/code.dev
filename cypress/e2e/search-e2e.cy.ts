@@ -3,7 +3,7 @@ describe("search found none", () => {
     cy.visit("http://localhost:3000/posts");
   });
 
-  it("should be able to search for posts and found none", () => {
+  it("should be able to search for a random post and not found it", () => {
     cy.get("input").type("random").parent("form");
 
     cy.location("search").should("eq", "?query=random");
@@ -17,7 +17,7 @@ describe("search", () => {
     cy.visit("http://localhost:3000/posts");
   });
 
-  it("should be able to search for posts", () => {
+  it("should be able to search for a existent post and found it", () => {
     cy.get("input").type("deploy").parent("form");
 
     cy.location("search").should("eq", "?query=deploy");

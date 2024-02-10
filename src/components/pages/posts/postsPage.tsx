@@ -1,6 +1,5 @@
 import { PostsGraphQL } from "@/src/types/pages/posts/posts";
 import { PostsSection } from "../../common/sections/posts/posts";
-import { NotFoundPosts } from "./sections/notFound/notFound";
 
 export default function PostsPage({
   posts,
@@ -12,8 +11,7 @@ export default function PostsPage({
   totalPages: number;
 }) {
   return (
-    <div className="m-auto min-h-screen w-11/12 space-y-16 sm:space-y-32 lg:w-10/12">
-      {posts && posts.length > 0 ? (
+    <div className="m-auto min-h-screen w-11/12 lg:w-10/12">
         <PostsSection
           title="Publicações"
           posts={posts}
@@ -22,9 +20,6 @@ export default function PostsPage({
           postsCount={postsCount}
           totalPages={totalPages}
         />
-      ) : (
-        <NotFoundPosts />
-      )}
     </div>
   );
 }

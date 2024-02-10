@@ -9,14 +9,18 @@ export default function UserPage({
   userPostsCount,
 }: {
   user: UserGraphQL;
-  userPostsCount: PostsConnection;
+  userPostsCount: PostsConnection | string;
 }) {
   return (
     <div className="w-11/12 sm:w-10/12 m-auto min-h-screen space-y-12">
       <UserHeader user={user} />
       <section className="space-y-8">
         <UserAbout user={user} />
-        <UserPosts count={userPostsCount.postsConnection.aggregate.count} />
+        {typeof userPostsCount === 'string' ? (
+          <UserPosts count={userPostsCount} />
+        ) : (
+          <UserPosts count={userPostsCount.postsConnection.aggregate.count} />
+        )}
       </section>
     </div>
   );

@@ -5,6 +5,7 @@ import { gql } from "@apollo/client";
 
 import { postsPerPage } from "@/src/utils/utils";
 import { PostsGraphQL } from "@/src/types/pages/posts/posts";
+import { redirect } from "next/navigation";
 
 const GET_POSTS = gql`
   query Posts($skip: Int!, $postsPerPage: Int!, $searchTerm: String) {
@@ -53,19 +54,25 @@ export async function getPosts(
   skip: number = 0,
   searchTerm: string = ""
 ): Promise<PostsGraphQL[]> {
-  const client = getClient();
-  const { data } = await client.query({
-    query: GET_POSTS,
-    variables: { skip, postsPerPage, searchTerm },
-    context: {
-      fetchOptions: {
-        next: {
-          revalidate: 60,
+  try {
+    const client = getClient();
+    const { data } = await client.query({
+      query: GET_POSTS,
+      variables: { skip, postsPerPage, searchTerm },
+      context: {
+        fetchOptions: {
+          next: {
+            revalidate: 60,
+          },
         },
       },
-    },
-  });
-  return data.posts;
+    });
+    return data.posts;
+  } catch (error) {
+    console.error("Erro ao buscar posts", error);
+  }
+
+  redirect("/500");
 }
 
 export async function getPostsCount(searchTerm: string = ""): Promise<number> {
@@ -81,5 +88,5 @@ export async function getPostsCount(searchTerm: string = ""): Promise<number> {
       },
     },
   });
-  return data.postsConnection.aggregate.count;
+  return data.postsConnection.aggregate.count || 0;
 }

@@ -1,6 +1,12 @@
 import { postsPerPage } from "@/src/utils/utils";
 import { getPosts, getPostsCount } from "@/server/actions/posts/posts";
 import PostsPage from "@/src/components/pages/posts/postsPage";
+import NotFoundPostsPage from "@/src/components/pages/posts/notFoundPostsPage";
+
+export const metadata = {
+  title: "Publicações",
+  description: "Explore nossas publicações sobre programação e tecnologia.",
+}
 
 export default async function Page({
   searchParams,
@@ -16,6 +22,10 @@ export default async function Page({
   ]);
 
   const totalPages = Math.ceil(postsCount / postsPerPage);
+
+  if (posts.length === 0) {
+    return <NotFoundPostsPage />
+  }
 
   return (
     <PostsPage

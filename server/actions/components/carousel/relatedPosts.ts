@@ -1,6 +1,7 @@
 import { getClient } from "@/server/db/apollo-client/apollo-client";
 import { PostsGraphQL } from "@/src/types/pages/posts/posts";
 import { gql } from "@apollo/client";
+import { redirect } from "next/navigation";
 
 const GET_RELATED_POSTS = gql`
   query RelatedPosts($categoryTitles: [String!]!, $currentPostSlug: String!) {
@@ -40,20 +41,26 @@ export async function getRelatedPosts(
   categoryTitles: string[],
   currentPostSlug: string
 ): Promise<PostsGraphQL[]> {
-  const client = getClient();
-  const { data } = await client.query({
-    query: GET_RELATED_POSTS,
-    variables: {
-      categoryTitles,
-      currentPostSlug,
-    },
-    context: {
-      fetchOptions: {
-        next: {
-          revalidate: 60,
+  try {
+    const client = getClient();
+    const { data } = await client.query({
+      query: GET_RELATED_POSTS,
+      variables: {
+        categoryTitles,
+        currentPostSlug,
+      },
+      context: {
+        fetchOptions: {
+          next: {
+            revalidate: 60,
+          },
         },
       },
-    },
-  });
-  return data.posts;
+    });
+    return data.posts;
+  } catch (error) {
+    console.error("Erro ao buscar posts relacionados:", error);
+  }
+
+  redirect("/500");
 }
