@@ -1,4 +1,4 @@
-import { RichText } from "./rich-text";
+import { ElementNode } from "@graphcms/rich-text-types";
 
 export type Post = {
   id: number;
@@ -19,13 +19,6 @@ export type PostsConnection = {
     aggregate: {
       count: number;
     };
-    pageInfo?: {
-      endCursor: string;
-      hasNextPage: boolean;
-    };
-    edges?: {
-      node: Post;
-    }[];
   };
 };
 
@@ -46,4 +39,12 @@ export type Category = {
   id: number;
   title: string;
   postsRelationship?: Post[];
+};
+
+export type RichText = {
+  content: {
+    raw: {
+      children: ElementNode[];
+    };
+  };
 };

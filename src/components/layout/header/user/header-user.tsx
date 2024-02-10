@@ -4,8 +4,8 @@ import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "../../../_ui-shadcn/avatar";
-import { TypographyH1, TypographyMuted } from "../../../templates/typography";
+} from "../../../_ui/avatar";
+import { TypographyH1, TypographyMuted } from "../../../common/typography/typography";
 import { UserGraphQL } from "@/src/types/pages/user/user";
 
 type UserHeaderProps = {

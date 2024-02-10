@@ -9,10 +9,10 @@ import {
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-} from "../../../_ui-shadcn/navigation-menu";
-import { Button } from "../../../_ui-shadcn/button";
+} from "../../../_ui/navigation-menu";
+import { Button } from "../../../_ui/button";
 
-import { ModeToggle } from "../../../_ui/mode-toggle";
+import { ModeToggle } from "../../../common/modeToggle/modeToggle";
 
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";

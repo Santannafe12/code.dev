@@ -1,6 +1,6 @@
 import { postsPerPage } from "@/src/utils/utils";
-import PostsContainer from "@/src/containers/posts/posts-container";
-import { getPosts, getPostsCount } from "@/server/actions/posts";
+import { getPosts, getPostsCount } from "@/server/actions/posts/posts";
+import PostsPage from "@/src/components/pages/posts/postsPage";
 
 export default async function Page({
   searchParams,
@@ -18,7 +18,7 @@ export default async function Page({
   const totalPages = Math.ceil(postsCount / postsPerPage);
 
   return (
-    <PostsContainer
+    <PostsPage
       posts={posts}
       postsCount={postsCount}
       totalPages={totalPages}

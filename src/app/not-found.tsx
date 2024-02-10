@@ -1,5 +1,5 @@
-import NotFoundContainer from "../containers/404/404-container";
+import NotFoundPage from "../components/pages/404/404Page";
 
 export default function NotFound() {
-  return <NotFoundContainer />;
+  return <NotFoundPage />;
 }

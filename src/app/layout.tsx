@@ -2,8 +2,8 @@ import "./globals.css";
 
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { ThemeProvider } from "../providers/theme-provider";
-import { Toaster } from "../components/_ui-shadcn/toaster";
+import { ThemeProvider } from "../providers/themeProvider";
+import { Toaster } from "../components/_ui/toaster";
 import Footer from "../components/layout/footer/footer";
 import Header from "../components/layout/header/home/header-home";
 

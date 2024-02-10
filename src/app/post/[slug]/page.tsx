@@ -1,6 +1,6 @@
-import { getPost } from "@/server/actions/post";
-import { getRelatedPosts } from "@/server/actions/relatedPosts";
-import PostContainer from "@/src/containers/post/post-container";
+import { getPost } from "@/server/actions/post/post";
+import { getRelatedPosts } from "@/server/actions/components/carousel/relatedPosts";
+import PostPage from "@/src/components/pages/post/postPage";
 
 export default async function Page({ params }: { params: { slug: string } }) {
   const post = await getPost(params.slug);
@@ -9,5 +9,5 @@ export default async function Page({ params }: { params: { slug: string } }) {
     post.slug
   );
 
-  return <PostContainer post={post} relatedPosts={relatedPosts} />;
+  return <PostPage post={post} relatedPosts={relatedPosts} />;
 }

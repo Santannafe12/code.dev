@@ -1,7 +1,8 @@
 "use server";
 
-import { AirbnbReviewEmail } from "@/src/components/templates/email-template";
-import { formSchema } from "@/src/components/forms/form-contact";
+
+import { formSchema } from "@/src/components/pages/home/sections/form/contact";
+import { ContactTemplate } from "@/src/components/pages/home/sections/form/template/contactTemplate";
 import { Resend } from "resend";
 import { z } from "zod";
 
@@ -22,7 +23,7 @@ export async function send(values: Props) {
     to: "codejrdev@gmail.com",
     reply_to: `${values.email}`,
     subject: `Contato - ${values.name} - A respeito de: ${values.select}`,
-    react: AirbnbReviewEmail({
+    react: ContactTemplate({
       name: emailProps.name,
       email: emailProps.email,
       message: emailProps.message,

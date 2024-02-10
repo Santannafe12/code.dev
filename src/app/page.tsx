@@ -1,6 +1,6 @@
-import { getPosts } from "@/server/actions/posts";
-import HomeContainer from "../containers/home/home-container";
-import { getTrendingPosts } from "@/server/actions/trendingPosts";
+import { getPosts } from "@/server/actions/posts/posts";
+import { getTrendingPosts } from "@/server/actions/components/carousel/trendingPosts";
+import HomePage from "../components/pages/home/homePage";
 
 export default async function Home() {
   const [posts, trendingPosts] = await Promise.all([
@@ -8,5 +8,5 @@ export default async function Home() {
     getTrendingPosts(),
   ]);
 
-  return <HomeContainer posts={posts} trendingPosts={trendingPosts} />;
+  return <HomePage posts={posts} trendingPosts={trendingPosts} />;
 }

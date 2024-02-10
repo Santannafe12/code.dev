@@ -1,5 +1,5 @@
-import { getUser, getUserPosts } from "@/server/actions/user";
-import UserContainer from "@/src/containers/user/user-container";
+import { getUser, getUserPosts } from "@/server/actions/user/user";
+import UserPage from "@/src/components/pages/user/userPage";
 
 export default async function Page({
   params,
@@ -11,5 +11,5 @@ export default async function Page({
     getUserPosts(params.username),
   ]);
 
-  return <UserContainer user={user} userPostsCount={userPostsCount} />;
+  return <UserPage user={user} userPostsCount={userPostsCount} />;
 }
