@@ -50,7 +50,7 @@ export async function getUser(username: string): Promise<UserGraphQL> {
     console.error("Internal server error", error);
   }
 
-  redirect("/500");
+  redirect("/internal-server-error");
 }
 
 export async function getUserPostsCount(

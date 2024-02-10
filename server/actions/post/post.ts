@@ -54,5 +54,5 @@ export async function getPost(slug: string): Promise<PostGraphQL> {
     console.error("Erro ao buscar post:", error);
   }
   
-  redirect("/500");
+  redirect("/internal-server-error");
 }

@@ -51,5 +51,5 @@ export async function getTrendingPosts(): Promise<PostsGraphQL[]> {
     console.error("Erro ao buscar posts em destaque:", error);
   }
 
-  redirect("/500");
+  redirect("/internal-server-error");
 }

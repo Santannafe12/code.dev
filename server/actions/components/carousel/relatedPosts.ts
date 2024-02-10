@@ -62,5 +62,5 @@ export async function getRelatedPosts(
     console.error("Erro ao buscar posts relacionados:", error);
   }
 
-  redirect("/500");
+  redirect("/internal-server-error");
 }

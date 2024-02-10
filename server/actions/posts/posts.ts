@@ -72,7 +72,7 @@ export async function getPosts(
     console.error("Erro ao buscar posts", error);
   }
 
-  redirect("/500");
+  redirect("/internal-server-error");
 }
 
 export async function getPostsCount(searchTerm: string = ""): Promise<number> {
