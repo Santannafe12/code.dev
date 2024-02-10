@@ -53,6 +53,9 @@ dependencies:
   class-variance-authority:
     specifier: ^0.7.0
     version: 0.7.0
+  clsx:
+    specifier: ^2.1.0
+    version: 2.1.0
   embla-carousel-autoplay:
     specifier: ^8.0.0-rc21
     version: 8.0.0-rc22(embla-carousel@8.0.0-rc22)
