@@ -141,19 +141,20 @@ export default function Contact() {
                 <Select
                   onValueChange={field.onChange}
                   defaultValue={field.value}
+                  aria-label="Assunto"
                 >
                   <FormControl>
                     <SelectTrigger>
-                      <SelectValue placeholder="Select a option" />
+                      <SelectValue placeholder="Selecione uma opção" aria-label="Selecione uma opção" />
                     </SelectTrigger>
                   </FormControl>
-                  <SelectContent>
-                    <SelectGroup>
-                      <SelectLabel>Opções</SelectLabel>
-                      <SelectItem value="post">Post</SelectItem>
-                      <SelectItem value="doubt">Dúvida</SelectItem>
-                      <SelectItem value="design">Design</SelectItem>
-                      <SelectItem value="other">Outro</SelectItem>
+                  <SelectContent aria-label="Conteúdo">
+                    <SelectGroup aria-label="Grupo">
+                      <SelectLabel aria-label="Opções para selecionar">Opções</SelectLabel>
+                      <SelectItem value="post" aria-label="Post">Post</SelectItem>
+                      <SelectItem value="doubt" aria-label="Dúvida">Dúvida</SelectItem>
+                      <SelectItem value="design" aria-label="Design">Design</SelectItem>
+                      <SelectItem value="other" aria-label="Outro">Outro</SelectItem>
                     </SelectGroup>
                   </SelectContent>
                 </Select>
