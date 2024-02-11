@@ -1,7 +1,7 @@
 import { getPost } from "@/server/actions/post/post";
 import { getRelatedPosts } from "@/server/actions/components/carousel/relatedPosts";
 import PostPage from "@/src/components/pages/post/postPage";
-import { Metadata, ResolvingMetadata } from 'next'
+import { Metadata } from 'next'
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
 import SkeletonDemo from "@/src/components/common/skeleton/skeleton";
@@ -12,21 +12,15 @@ type Props = {
 
 export async function generateMetadata(
   { params }: Props,
-  parent: ResolvingMetadata
 ): Promise<Metadata> {
   try {
     const slug = params.slug
 
     const product = await getPost(slug)
 
-    const previousImages = (await parent).openGraph?.images || []
-
     return {
       title: product.title,
       description: product.description,
-      openGraph: {
-        images: [`${product.image.url}`, ...previousImages],
-      },
     }
   }
   catch (error) {
@@ -38,7 +32,6 @@ export async function generateMetadata(
     };
   }
 }
-
 
 export default async function Page({ params }: { params: { slug: string } }) {
   const post = await getPost(params.slug);
@@ -53,7 +46,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
   );
 
   return (
-    <Suspense fallback={<SkeletonDemo />}>
+    <Suspense fallback={<SkeletonDemo className="mx-auto w-11/12 sm:w-10/12 md:w-9/12 xl:w-8/12 2xl:w-7/12" />}>
       <PostPage post={post} relatedPosts={relatedPosts} />;
     </Suspense>
   );

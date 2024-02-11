@@ -12,7 +12,7 @@ export default function UserPage({
   userPostsCount: PostsConnection | string;
 }) {
   return (
-    <div className="w-11/12 sm:w-10/12 m-auto min-h-screen space-y-12">
+    <div className="w-11/12 sm:w-10/12 mx-auto min-h-screen space-y-12">
       <UserHeader user={user} />
       <section className="space-y-8">
         <UserAbout user={user} />

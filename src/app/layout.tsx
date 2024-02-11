@@ -10,12 +10,26 @@ import Header from "../components/layout/header/home/header-home";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('http://localhost:3000'),
+  alternates: {
+    canonical: '/',
+    languages: {
+      'pt-BR': '/pt-BR',
+    },
+  },
   title: {
     default: 'Home',
     template: '%s - code.dev',
   },
   description: "Aqui você encontra de tudo um pouco sobre programação",
-};
+  openGraph: {
+    images: '/og-image.png',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    site: '@codedotdev',
+  }
+}
 
 export default function RootLayout({
   children,

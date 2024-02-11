@@ -14,7 +14,7 @@ export default function HomePage({
   trendingPosts: CarouselGraphQL[];
 }) {
   return (
-    <section className="m-auto min-h-screen w-11/12 space-y-16 sm:space-y-32 lg:w-10/12">
+    <section className="mx-auto min-h-screen w-11/12 space-y-16 sm:space-y-32 lg:w-10/12">
       <Carousel posts={trendingPosts} typography="Posts em Destaque:" priority={true} />
       <PostsSection
         posts={posts}

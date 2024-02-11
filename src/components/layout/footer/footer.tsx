@@ -11,13 +11,13 @@ export default function Footer() {
           <span className="text-lg font-semibold">code.dev</span>
           <span className="sr-only">Link para a página Home</span>
         </Link>
-        <span className="text-base text-center text-muted-foreground">
+        <span className="text-muted-foreground text-base text-center">
           Construído por Felipe Sant&apos;Anna. Código fonte no{" "}
           <Link
             href={"https://github.com/Santannafe12"}
             aria-label="Link para o repositório do Github do criador deste projeto"
             target="_blank"
-            className="text-blue-400 hover:underline"
+            className="text-white hover:underline"
           >
             <span className="sr-only">Link para o repositório do Github do criador deste projeto</span>
             Github.

@@ -11,7 +11,7 @@ export default function PostsPage({
   totalPages: number;
 }) {
   return (
-    <div className="m-auto min-h-screen w-11/12 lg:w-10/12">
+    <div className="mx-auto min-h-screen w-11/12 lg:w-10/12">
         <PostsSection
           title="Publicações"
           posts={posts}

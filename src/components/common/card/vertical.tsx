@@ -31,7 +31,7 @@ export default function CardVertical({ post, priority }: CardVerticalProps) {
           className="rounded-t-md border object-cover"
         />
         {post.trending ? (
-          <div className="absolute top-0 right-0 bg-red-500 text-white text-sm px-2 py-1 rounded-bl-md font-semibold cursor-default">
+          <div className="absolute top-0 right-0 bg-red-800 text-white text-sm px-2 py-1 rounded-bl-md font-semibold cursor-default">
             Em alta
           </div>
         ) : null}

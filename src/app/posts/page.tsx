@@ -30,7 +30,7 @@ export default async function Page({
   }
 
   return (
-    <Suspense fallback={<SkeletonDemo />}>
+    <Suspense fallback={<SkeletonDemo className="mx-auto w-11/12 lg:w-10/12" />}>
       <PostsPage
         posts={posts}
         postsCount={postsCount}

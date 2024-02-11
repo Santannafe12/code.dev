@@ -11,8 +11,8 @@ export default async function Home() {
   ]);
 
   return (
-    <Suspense fallback={<SkeletonDemo />}>
-      <HomePage posts={posts} trendingPosts={trendingPosts} />;
+    <Suspense fallback={<SkeletonDemo className="w-11/12 lg:w-10/12 mx-auto" />}>
+      <HomePage posts={posts} trendingPosts={trendingPosts} />
     </Suspense>
   )
 }

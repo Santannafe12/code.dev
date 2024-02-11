@@ -47,7 +47,7 @@ export default async function Page({
   }
 
   return (
-    <Suspense fallback={<SkeletonDemo />}>
+    <Suspense fallback={<SkeletonDemo className="w-11/12 sm:w-10/12" />}>
       <UserPage user={user} userPostsCount={userPostsCount} />;
     </Suspense>
   )

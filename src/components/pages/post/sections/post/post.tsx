@@ -40,12 +40,12 @@ export default function PostSection({ post }: PostSectionProps) {
       <section>
         <Image
           width={2048}
-          height={1152}
+          height={500}
           alt={`Imagem sobre: ${post.title}`}
           sizes="(min-width: 1540px) 58.36vw, (min-width: 1280px) 66.67vw, (min-width: 780px) 75vw, (min-width: 640px) 83.33vw, 91.56vw"
           src={post.image.url}
           priority={true}
-          className="aspect-video rounded-xl max-h-[450px] object-cover"
+          className="aspect-video rounded-xl max-h-[500px] object-cover"
         />
         <TypographyMuted className="text-center text-sm mt-2">{`Imagem sobre ${post.title}`}</TypographyMuted>
       </section>

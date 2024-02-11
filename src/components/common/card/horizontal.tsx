@@ -39,7 +39,7 @@ export default function CardHorizontal({ post, priority }: CardHorizontalProps) 
           className="object-cover rounded-l-md block lg:hidden w-full max-h-[350px]"
         />
         {post.trending === true ? (
-          <div className="md:hidden absolute top-0 right-0 bg-red-500 text-white text-sm px-2 py-1 rounded-bl-md font-semibold cursor-default">
+          <div className="md:hidden absolute top-0 right-0 bg-red-800 text-white text-sm px-2 py-1 rounded-bl-md font-semibold cursor-default">
             Em alta
           </div>
         ) : null}
@@ -51,7 +51,7 @@ export default function CardHorizontal({ post, priority }: CardHorizontalProps) 
                 <span className="sr-only">Link para a publicação</span>
               </Link>
               {post.trending === true ? (
-                <div className="hidden md:flex max-h-[30px] min-w-fit text-center bg-red-500 text-white text-sm px-2 py-1 rounded-bl-md rounded-tr-md font-semibold cursor-default">
+                <div className="hidden md:flex max-h-[30px] min-w-fit text-center bg-red-800 text-white text-sm px-2 py-1 rounded-bl-md rounded-tr-md font-semibold cursor-default">
                   Em alta
                 </div>
               ) : null}
