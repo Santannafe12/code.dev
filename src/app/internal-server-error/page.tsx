@@ -1,4 +1,4 @@
-import InternalServerErrorPage from "../../components/pages/500/500Page";
+import InternalServerErrorPage from "../../components/pages/internal-server-error/internalServerErrorPage";
 
 export default function Page() {
   return <InternalServerErrorPage />;

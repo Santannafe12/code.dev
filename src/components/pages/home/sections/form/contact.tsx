@@ -170,7 +170,7 @@ export default function Contact() {
                 <FormLabel>Mensagem</FormLabel>
                 <FormControl>
                   <Textarea
-                    placeholder="Message"
+                    placeholder="Mensagem"
                     {...field}
                     className="resize-none"
                     rows={5}

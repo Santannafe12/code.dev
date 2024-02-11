@@ -17,7 +17,7 @@ export default function Footer() {
             href={"https://github.com/Santannafe12"}
             aria-label="Link para o repositório do Github do criador deste projeto"
             target="_blank"
-            className="text-white hover:underline"
+            className="text-primary hover:underline"
           >
             <span className="sr-only">Link para o repositório do Github do criador deste projeto</span>
             Github.
