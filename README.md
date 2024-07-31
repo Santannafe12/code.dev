@@ -1,10 +1,10 @@
 # code.dev
-Blog project utilizing NextJS, Typescript, GraphQL and built on top of ShadcnUI. Code.dev has 4 pages, including a Home Page, Posts Page, Individual Post Page and User Page.
+Projeto de Blog utilizando Next.js e GraphQL, construído em cima do ShadcnUI. 
 
-More features of this project includes Contact API forms on Home Page, besides a Pagination and Search funcionalities on Posts Page. Besides a Tests development e2e section built with CypressJS.
+Mais features desse projeto incluem, API de Email, Apollo Client, funcionalidades de Paginação e Busca. Testes e2e desenvolvidos com Cypress.
 
-This project was build to be part of a NextJS trainment for Code Empresa Junior de Computacao.
+Esse projeto foi construído para fazer parte de um treinamento sobre Next.js na Code Empresa Júnior de Computação.
 
 ###TECHS###
 <br />
-NextJS, Typescript, TailwindCSS, ShadcnUI, Apollo Client, GraphQL API and Resend API.
+NextJS, Typescript, TailwindCSS, ShadcnUI, Apollo Client, GraphQL API e Resend.
